@@ -78,6 +78,8 @@ USER SHOW PAGE [4/7]
     -Has option to create new trip
     -Has option to delete a trip
     -Has option to edit a trip
+    #-Has logout option
+    -Has option to edit a user
 
 USER SHOW FORM TO EDIT PAGE [5/7]
     -Show form to edit user
@@ -99,11 +101,11 @@ EJS TEMPLATES
             #-Field for departure city
             #-POSTS Create user on submit
         
-        LOGIN-FORM
+        #LOGIN-FORM
             #-Field for username(required)
             #-Field for password(required)
-            -Button to new user show form
-            -POSTS to users/login page to login
+            #-Button to new user show form
+            #-POSTS to users/login page to login
 
         EDIT FORM
             -Field to change username?

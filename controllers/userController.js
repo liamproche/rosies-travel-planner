@@ -2,6 +2,7 @@ const User = require('../models/user')
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const Trip = require('../models/trip');
 
 
 //SHOW USER LOGIN FORM ROUTE(GET)
@@ -127,9 +128,10 @@ router.get('/:id', async (req, res)=>{
     try{
         //QUERIES DB TO FIND SPECIFIC USER BY ID
         const user = await User.findById(req.params.id)
-        // NOTE-COMMENT IN TO RENDER USER SHOW TEMPLATE
+        const userTrips = await Trip.find(user)
         res.render("users/show.ejs", {
-            user: user
+            user: user,
+            trips: userTrips
         })
     //DB FUCK-UPS
     }catch(err){

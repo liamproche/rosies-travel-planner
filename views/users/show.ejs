@@ -9,7 +9,23 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-        <a href="/users/logout"><button>Logout</button></a>
+        <h1>This is the user show page</h1>
+        <%if(trips.length === 0){%>
+            <h2>There are no trips yet</h2>
+        <%}else{%>
+            <ul class="trips">
+                <%trips.forEach((trip)=>{%>
+                    <%if(trip.user == user.id){%>    
+                    <!-- LISTS USERS TRIPS NY CITY ONLY HREF TIED TO TRIP SHOW ROUTE -->
+                    <li><a href="/trips/<%=trip._id%>"><%=trip.destinationCity%></a></li>
+                    <%}%>
+                <%})%>
+            </ul>
+        <%}%>
+        
+        <!-- BELOW NEEDS TO LINK TO SHOW FORM TO CREATE TRIP PAGE -->
+        <a href="/trips/new"><button class="create-trip-button">Create a Trip!</button></a> 
+        <a href="/users/logout"><button class="logout-button">Logout</button></a>
         <script src="" async defer></script>
     </body>
 </html>
