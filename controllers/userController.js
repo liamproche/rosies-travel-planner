@@ -82,11 +82,10 @@ router.get('/:id/edit', async (req, res)=>{
             //QUERIES THE DATABASE
             const user = await User.findById(req.params.id)
             console.log("checking the db")
-            res.send("Showing the form to edit a user")
             //NOTE- ADD IN BELOW TO RENDER FORM
-            // res.render('users/edit.ejs', {
-            //     user: user
-            // })
+            res.render('users/edit.ejs', {
+                user: user
+            })
         }
         //IF USER IS NOT LOGGED IN AS USER REQUESTED TO EDIT
         else{    

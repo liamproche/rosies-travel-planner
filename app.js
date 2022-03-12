@@ -17,16 +17,6 @@ const port = process.env.PORT || 3000
 app.use(express.urlencoded({extended: true}));
 
 
-//MIDDLEWARE FOR USER LOG-IN
-// app.use((req, res, next)=>{
-//     if(req.session.isLoggedIn){
-//         next()
-//     }
-//     else{
-//         res.send("User is not logged in")
-//     }
-// })
-
 
 //TELLS APP TO USE EXPRESS SESSION
 app.use(session({
@@ -37,8 +27,14 @@ app.use(session({
 }))
 
 
+
+//METHOD OVERRIDE FOR PUT REQUESTS
+app.use(methodOverride('_method'))
+
+
 //USER CONTROLLER
 app.use('/users', userController)
+
 
 
 //FOR USER LOGIN POST REQUEST

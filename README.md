@@ -73,17 +73,16 @@ TRIP DELETE ROUTE [7/7]
     #-Routes to their user show page
 
 USER SHOW PAGE [4/7]
-    -Lists all trips from user
-    -Lists prices of all trips from user
-    -Has option to create new trip
-    -Has option to delete a trip
-    -Has option to edit a trip
+    #-Lists all trips from user  <--Needs testing after trips added
+    -Lists prices of all trips from user <--Stretch goal
+    #-Has option to create new trip
+    -Has option to delete a trip <--Add after trips routes created
+    -Has option to edit a trip <--Add after trips routes created
     #-Has logout option
-    -Has option to edit a user
+    #-Has option to edit a user
 
 USER SHOW FORM TO EDIT PAGE [5/7]
     -Show form to edit user
-
 
 USER EDIT ROUTE [6/7]
     -Edits the user
@@ -109,7 +108,7 @@ EJS TEMPLATES
 
         EDIT FORM
             -Field to change username?
-            -Field to change display name?
+            -Field to change display name
             -Field to change password?
             -Field to confirm password change?
             -Field to change departure city
