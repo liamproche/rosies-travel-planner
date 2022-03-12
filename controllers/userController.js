@@ -66,8 +66,6 @@ router.post('/new', async (req, res)=>{
 
 //SHOW FORM TO CREATE NEW USER ROUTE(GET)
 router.get('/new', (req, res)=>{
-    // res.send('This route shows the form to create a new user')
-    //NOTE- COMMENT IN BELOW TO RENDER CREATE USER FORM
     res.render('../views/users/new.ejs')
 })
 
@@ -129,12 +127,10 @@ router.get('/:id', async (req, res)=>{
     try{
         //QUERIES DB TO FIND SPECIFIC USER BY ID
         const user = await User.findById(req.params.id)
-        res.send("List of user trips go here")
         // NOTE-COMMENT IN TO RENDER USER SHOW TEMPLATE
-        // res.render("users/show.ejs", {
-        //     user: user
-        // })
-
+        res.render("users/show.ejs", {
+            user: user
+        })
     //DB FUCK-UPS
     }catch(err){
         res.sendStatus(500)
