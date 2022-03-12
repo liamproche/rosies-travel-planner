@@ -13,10 +13,15 @@
             <form action="/users/new" method="POST">
                 <label for="username">Username:</label>
                 <input type="text" name="username" required>
-                <br><br><br>
                 <label for="password">Password:</label>
-                <input type="password" name="password" required>
-                <br><br><br>
+                <!-- NOTE-NEED A REAL FIX FOR PASSWORD MIN VALIDATION -->
+                <input type="password" name="password" minlegnth=8 required> 
+                <label for="departureCity">Departure City:</label>
+                <input type="text" name="departureCity">
+                <label for="departureDate">Departure Date:</label>
+                <input type="date" name="departureDate">
+                <label for="returnDate">Return Date:</label>
+                <input type="date" name="returnDate">
                 <input type="submit">            
             </form>
         <script src="" async defer></script>
