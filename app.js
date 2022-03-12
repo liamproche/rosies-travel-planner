@@ -12,12 +12,7 @@ const store = new MongoDBStore({
 const userController = require('./controllers/userController');
 const port = process.env.PORT || 3000
 
-
-
-
-
-
-
+app.use('/users', userController)
 
 
 app.listen(port, ()=>{
