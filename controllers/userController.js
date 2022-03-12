@@ -6,15 +6,14 @@ const bcrypt = require('bcryptjs');
 
 //SHOW USER LOGIN FORM ROUTE(GET)
 router.get('/', async (req, res)=>{
-   res.send('This is the login form')
     // NOTE- COMMENT IN BELOW TO RENDER LOGIN FORM
-    // res.render('users/login.ejs', {
-    // })
+    res.render('users/login.ejs', {
+    })
 })
 
 
 //LOG USER IN ROUTE(POST)
-router.post("/", async (req, res)=>{
+router.post("/login", async (req, res)=>{
     try{
         //GRABS USERNAME FROM THE BODY OF THE FORM AND QUERIES THE DATABASE
         const possibleUser = await User.findOne({username: req.body.username})
@@ -24,10 +23,12 @@ router.post("/", async (req, res)=>{
             if(bcrypt.compareSync(req.body.password, possibleUser.password)){
                 //IF PASSWORDS MATCH USER IS LOGGED IN
                 req.session.isLoggedIn = true;
+                console.log(possibleUser)
                 //SETS THE USER ID FOR THE SESSION
                 req.session.userId = possibleUser._id;
                 //REDIRECTS LOGGED-IN USER TO USER SHOW PAGE
                 res.redirect(`/users/${possibleUser._id}`)
+                console.log("user is logged in")
             }else{
                 //IF PASSWORDS DONT MATCH REDERICT TO LOG-IN PAGE
                 res.redirect("/users")

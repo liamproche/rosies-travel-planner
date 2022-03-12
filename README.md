@@ -4,7 +4,6 @@ APP DESCRIPTION
 This travel planning app will allow users to save their bucket-list destinations and use an API call to tell them the airfare cost for dates that they specify to each of their destinations. Stretch social integration so users can see destinations others (friends???? people they follow???) have created. 
 
 
-
 MODELS
 
 #USER
