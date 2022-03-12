@@ -10,7 +10,11 @@ const tripSchema = new Schema({
     
     //TO TIE TRIP TO SPECIFIC USER
     user: {type: Schema.Types.ObjectId, ref: 'User'}
-}, {timestamps: true})
+}, {timestamps: true}
+
+    //ADD POSSIBLE ADDINTIONAL CONTENT ON CITY BELOW
+
+)
 
 const Trip = mongoose.model('Trip', tripSchema);
 

@@ -7,19 +7,21 @@ This travel planning app will allow users to save their bucket-list destinations
 
 MODELS
 
-USER
-    -username
-    +display name? Want to see "Steven Luu" not "stevenluu566" [does not have to be unique]
-    -password 
-    -Starting Location
-    -Date of departure- Needs to be stored in user model???
-    -Date of return (may not be a thing)- Needs to be stored in user model???
-    -Timestamp 
+#USER
+    #-username
+    #+display name? Want to see "Steven Luu" not "stevenluu566" [does not have to be unique]
+    #-password (curently a string min-length:8 maxlength:20) 
+    #-Starting Location
+    #-Date of departure- Needs to be stored in user model???
+    #-Date of return (may not be a thing)- Needs to be stored in user model???
+    #-Timestamp 
 
-TRIP
-    -Destination
-    -Flight Price
-    -Timestamp
+#TRIP
+    #-Destination
+    #-Flight Price
+    #-Timestamp
+    
+    
     -Additional Content:
     -resturants [or an API with local bars, must-gos, resturants]
 
