@@ -100,10 +100,10 @@ EJS TEMPLATES
             #-POSTS Create user on submit
         
         LOGIN-FORM
-            -Field for username(required)
-            -Field for password(required)
+            #-Field for username(required)
+            #-Field for password(required)
             -Button to new user show form
-            -POSTS to user index page to login
+            -POSTS to users/login page to login
 
         EDIT FORM
             -Field to change username?
