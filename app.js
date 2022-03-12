@@ -17,7 +17,6 @@ const port = process.env.PORT || 3000
 app.use(express.urlencoded({extended: true}));
 
 
-
 //TELLS APP TO USE EXPRESS SESSION
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -25,7 +24,6 @@ app.use(session({
     saveUninitialized: false,
     store: store,
 }))
-
 
 
 //METHOD OVERRIDE FOR PUT REQUESTS
@@ -36,9 +34,8 @@ app.use(methodOverride('_method'))
 app.use('/users', userController)
 
 
-
 //FOR USER LOGIN POST REQUEST
-//NOTE- REQUIRES "SESSION_SECRET = <string>" IN dotENV file
+//NOTE- REQUIRES "SESSION_SECRET = <string>" IN .env file
 app.use(express.json());
 app.use(session({
     secret: process.env.SESSION_SECRET,
