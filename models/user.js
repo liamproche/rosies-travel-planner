@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
 const userSchema = new Schema({
     userName: {type:String, required: true, unique: true, minlength: 1, maxlength: 50},
     displayName: {type:String, minlength: 1, maxlength: 50},

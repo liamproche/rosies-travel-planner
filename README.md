@@ -14,14 +14,12 @@ MODELS
     #-Starting Location
     #-Date of departure- Needs to be stored in user model???
     #-Date of return (may not be a thing)- Needs to be stored in user model???
-    #-Timestamp 
+    #-Timestamp
 
 #TRIP
     #-Destination
     #-Flight Price
     #-Timestamp
-    
-    
     -Additional Content:
     -resturants [or an API with local bars, must-gos, resturants]
 
@@ -64,19 +62,16 @@ TRIP EDIT ROUTE [6/7]
 TRIP DELETE ROUTE [7/7]
     -Deletes the trip
 
+#USER INDEX ROUTE [1/7]
+    #-Show form to login in
 
-USER INDEX ROUTE [1/7]
-    -Show form to login in
-    -Has option to create a user
+#USER SHOW FORM TO CREATE NEW USER ROUTE [2/7]
+    #-Renders form to create new user
+    #-Redirect to user show page
 
-USER SHOW FORM TO CREATE NEW USER ROUTE [2/7]
-    -Renders form to create new user
-    -POST on submit 
-    -Redirect to user show page
-
-USER CREATE ROUTE(POST) [3/7]
-    -Creates the user
-    -Routes to user show page
+#USER CREATE ROUTE(POST) [3/7]
+    #-Creates the user
+    #-Routes to their user show page
 
 USER SHOW PAGE [4/7]
     -Lists all trips from user
@@ -87,7 +82,7 @@ USER SHOW PAGE [4/7]
 
 USER SHOW FORM TO EDIT PAGE [5/7]
     -Show form to edit user
-    -Option to delete user
+
 
 USER EDIT ROUTE [6/7]
     -Edits the user
@@ -95,6 +90,35 @@ USER EDIT ROUTE [6/7]
 USER DELETE ROUTE [7/7]
     -Deletes the User
 
+EJS TEMPLATES
+    USERS
+        CREATE USER FORM
+            -Field for username
+            -Field for First Name
+            -Field for Last Name
+            -Field for email address
+            -Field for password
+            -Field to confirm password?
+            -Field for departure city
+            -POSTS Create user on submit
+        
+        LOGIN-FORM
+            -Field for username(required)
+            -Field for password(required)
+            -Button to new user show form
+            -POSTS to user index page to login
+
+        EDIT FORM
+            -Field to change username?
+            -Field to change display name?
+            -Field to change password?
+            -Field to confirm password change?
+            -Field to change departure city
+            -Field to change depature date <--Still not sure this should be included in user data, maybe trip?
+            -Field to change return date <-- ""
+            -Button to delete user
+    
+    TRIPS
 
 
 FUNCTION NEEDS
@@ -108,6 +132,7 @@ STRETCH GOALS
 POSSIBLE THINGS TO ADD TO USER MODEL
     -Restaurants they want to visit
     -Cultural events
+
 
 ADDITIONAL STRETCH GOALS
     -Social Media integration [shows trending destinations and/or friends saved destinations]
@@ -131,7 +156,6 @@ LUTHER - API and bootstrap
 
 
 STEVEN- Backend JS jquery middleware
-
 
 
 NOTES
