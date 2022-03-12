@@ -94,8 +94,7 @@ EJS TEMPLATES
     USERS
         CREATE USER FORM
             -Field for username
-            -Field for First Name
-            -Field for Last Name
+            -Field for Name (display)
             -Field for email address
             -Field for password
             -Field to confirm password?

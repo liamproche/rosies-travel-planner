@@ -6,8 +6,8 @@ const bcrypt = require('bcryptjs');
 
 //SHOW USER LOGIN FORM ROUTE(GET)
 router.get('/', async (req, res)=>{
-    res.send("Login form")
-    //NOTE- COMMENT IN BELOW TO RENDER LOGIN FORM
+   res.send('This is the login form')
+    // NOTE- COMMENT IN BELOW TO RENDER LOGIN FORM
     // res.render('users/login.ejs', {
     // })
 })
@@ -44,16 +44,8 @@ router.post("/", async (req, res)=>{
 })
 
 
-//SHOW FORM TO CREATE NEW USER ROUTE(GET)
-router.get('/new', (req, res)=>{
-    res.send('This route shows the form to create a new user')
-    //NOTE- COMMENT IN BELOW TO RENDER CREATE USER FORM
-    // res.render('users/new.ejs')
-})
-
-
 //CREATE A NEW USER ROUTE(POST)
-router.post('/', async (req, res)=>{
+router.post('/new', async (req, res)=>{
     //CHECKS THAT INFORMATION WAS ADDED INTO THE FORM
     console.log(req.body)
     //CREATES AND STORES ENCRYPTED PASSWORD
@@ -67,7 +59,15 @@ router.post('/', async (req, res)=>{
     //TO ENSURE NEW USER WAS CREATED
     console.log(newUser)
     //SENDS USER TO USER SHOW PAGE
-    res.redirect(`/users/${newUser._id}`)
+    res.redirect(`/users`)
+})
+
+
+//SHOW FORM TO CREATE NEW USER ROUTE(GET)
+router.get('/new', (req, res)=>{
+    // res.send('This route shows the form to create a new user')
+    //NOTE- COMMENT IN BELOW TO RENDER CREATE USER FORM
+    res.render('../views/users/new.ejs')
 })
 
 

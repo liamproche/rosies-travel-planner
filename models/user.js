@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 
 const userSchema = new Schema({
-    userName: {type:String, required: true, unique: true, minlength: 1, maxlength: 50},
-    displayName: {type:String, minlength: 1, maxlength: 50},
-    password: {type:String, minlength: 8, maxlength: 20, required: true},
+    username: {type:String, required: true, unique: true, minlength: 1, maxlength: 50},
+    name: {type:String, minlength: 1, maxlength: 50},
+    password: {type:String, minlength: 8, maxlength: 500, required: true},
     departureCity: String,
     departureDate: Date,
     returnDate: Date,
