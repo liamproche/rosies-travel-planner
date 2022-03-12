@@ -92,14 +92,13 @@ USER DELETE ROUTE [7/7]
 
 EJS TEMPLATES
     USERS
-        CREATE USER FORM
-            -Field for username
-            -Field for Name (display)
-            -Field for email address
-            -Field for password
+        #CREATE USER FORM
+            #-Field for username
+            #-Field for Name (display)
+            #-Field for password
             -Field to confirm password?
-            -Field for departure city
-            -POSTS Create user on submit
+            #-Field for departure city
+            #-POSTS Create user on submit
         
         LOGIN-FORM
             -Field for username(required)
