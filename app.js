@@ -52,9 +52,6 @@ app.use(session({
 }))
 
 
-
-
-
 app.listen(port, ()=>{
     console.log('App is running')
 })

@@ -10,13 +10,17 @@
     </head>
     <body>
         <h1>This is the user show page</h1>
+        
+        <!-- DISPLAYS MESSAGE IF NO TRIPS -->
         <%if(trips.length === 0){%>
             <h2>There are no trips yet</h2>
+        
+        <!-- FUNCTION TO ADD TRIPS TO PAGE FOR SPECIFIC USER -->
         <%}else{%>
             <ul class="trips">
                 <%trips.forEach((trip)=>{%>
-                    <%if(trip.user == user.id){%>    
-                    <!-- LISTS USERS TRIPS NY CITY ONLY HREF TIED TO TRIP SHOW ROUTE -->
+                    <%if(trip.user == user.id){%>                        
+                        <!-- LISTS USERS TRIPS BY CITY ONLY HREF TIED TO TRIP SHOW ROUTE -->
                     <li><a href="/trips/<%=trip._id%>"><%=trip.destinationCity%></a></li>
                     <%}%>
                 <%})%>
@@ -25,6 +29,7 @@
         
         <!-- BELOW NEEDS TO LINK TO SHOW FORM TO CREATE TRIP PAGE -->
         <a href="/trips/new"><button class="create-trip-button">Create a Trip!</button></a> 
+        <a href="/users/<%=user._id%>/edit"><button>Edit Account</button></a>
         <a href="/users/logout"><button class="logout-button">Logout</button></a>
         <script src="" async defer></script>
     </body>

@@ -75,12 +75,14 @@ router.get('/new', (req, res)=>{
 router.get('/:id/edit', async (req, res)=>{
     //SINCE IT QUERIES THE DATABASE
     try{
-        //MAKES SURE LOGGED IN USER MATCHES USER IN DATABASE
-        if(req.session.userId === req.params.id){
+        console.log(req.session.userId)
+        console.log(req.params.id)
+        //MAKES SURE LOGGED IN USER MATCHES USER IN DATABASE (LOOSE EQUALITY- TYPE ERROR WITH STRICT)
+        if(req.session.userId == req.params.id){
             //QUERIES THE DATABASE
             const user = await User.findById(req.params.id)
-            //CHECKS TO MAKE SURE IT'S HAPPENING
-            console.log('showing form')
+            console.log("checking the db")
+            res.send("Showing the form to edit a user")
             //NOTE- ADD IN BELOW TO RENDER FORM
             // res.render('users/edit.ejs', {
             //     user: user
