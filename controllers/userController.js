@@ -57,11 +57,16 @@ router.post('/new', async (req, res)=>{
     //CHANGES USER PASSWORD TO ENCRYPTED PASSWORD
     req.body.password = hashedPassword
     //CREATES USER IN DB
-    const newUser = await User.create(req.body);
-    //TO ENSURE NEW USER WAS CREATED
-    console.log(newUser)
-    //SENDS USER TO USER SHOW PAGE
-    res.redirect(`/users`)
+    try{
+        const newUser = await User.create(req.body);
+        //TO ENSURE NEW USER WAS CREATED
+        console.log(newUser)
+        //SENDS USER TO USER SHOW PAGE
+        res.redirect(`/users`)
+    }catch(err){
+        console.log(err)
+        res.send('That user name is taken')
+    }
 })
 
 

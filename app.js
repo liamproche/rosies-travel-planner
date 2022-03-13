@@ -15,6 +15,7 @@ const port = process.env.PORT || 3000
 
 //MUST BE PLACED BEFORE USER CONTROLLER
 app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 
 
 //TELLS APP TO USE EXPRESS SESSION
@@ -26,23 +27,12 @@ app.use(session({
 }))
 
 
-//METHOD OVERRIDE FOR PUT REQUESTS
+//METHOD OVERRIDE FOR PUT & DELETE REQUESTS
 app.use(methodOverride('_method'))
 
 
 //USER CONTROLLER
 app.use('/users', userController)
-
-
-//FOR USER LOGIN POST REQUEST
-//NOTE- REQUIRES "SESSION_SECRET = <string>" IN .env file
-app.use(express.json());
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    store: store,
-}))
 
 
 app.listen(port, ()=>{

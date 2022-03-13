@@ -8,7 +8,7 @@ MODELS
 
 #USER
     #-username
-    #+display name? Want to see "Steven Luu" not "stevenluu566" [does not have to be unique]
+    #-display name? Want to see "Steven Luu" not "stevenluu566" [does not have to be unique]
     #-password (curently a string min-length:8 maxlength:20) 
     #-Starting Location
     #-Date of departure- Needs to be stored in user model???
@@ -81,14 +81,14 @@ USER SHOW PAGE [4/7]
     #-Has logout option
     #-Has option to edit a user
 
-USER SHOW FORM TO EDIT PAGE [5/7]
-    -Show form to edit user
+#USER SHOW FORM TO EDIT PAGE [5/7]
+    #-Show form to edit user
 
-USER EDIT ROUTE [6/7]
-    -Edits the user
+#USER EDIT ROUTE [6/7]
+    #-Edits the user
 
-USER DELETE ROUTE [7/7]
-    -Deletes the User
+#USER DELETE ROUTE [7/7]
+    #-Deletes the User
 
 EJS TEMPLATES
     USERS
@@ -106,15 +106,15 @@ EJS TEMPLATES
             #-Button to new user show form
             #-POSTS to users/login page to login
 
-        EDIT FORM
+        #EDIT FORM
             -Field to change username?
-            -Field to change display name
-            -Field to change password?
+            #-Field to change display name
+            #-Field to change password <--Tricky... Will require middle-ware with bcrypt
             -Field to confirm password change?
-            -Field to change departure city
-            -Field to change depature date <--Still not sure this should be included in user data, maybe trip?
-            -Field to change return date <-- ""
-            -Button to delete user
+            #-Field to change departure city
+            #-Field to change depature date <--Still not sure this should be included in user data, maybe trip?
+            #-Field to change return date <-- ""
+            #-Button to delete user
     
     TRIPS
 
@@ -127,7 +127,7 @@ FUNCTION NEEDS
 
 STRETCH GOALS
 
-POSSIBLE THINGS TO ADD TO USER MODEL
+POSSIBLE THINGS TO ADD TO TRIP MODEL
     -Restaurants they want to visit
     -Cultural events
 
