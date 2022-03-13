@@ -119,13 +119,12 @@ EJS TEMPLATES
     TRIPS
 
 
+STRETCH GOALS
+
 FUNCTION NEEDS
     -API data on flight price
     -GoogleMaps API???
 
-
-
-STRETCH GOALS
 
 POSSIBLE THINGS TO ADD TO TRIP MODEL
     -Restaurants they want to visit

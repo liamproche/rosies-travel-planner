@@ -9,6 +9,8 @@ const userSchema = new Schema({
     departureCity: String,
     departureDate: Date,
     returnDate: Date,
+    // NEED PUSH HERE ON CREATE TRIP ROUTE
+    trips: Array
 },{timestamps: true})
 
 const User = mongoose.model('User', userSchema);
