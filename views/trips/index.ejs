@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h1> TRENDING trips</h1>
+        <% if(trips.length === 0) {%>
+            <h2>There are no trips in the database!</h2>
+        <% } else { %> 
+        <ul class="trips">
+            <% trips.forEach((trip)=>{ %>
+                    <li><a href="/trips/show/<%=trip._id%>"><%=trip.destinationCity%>, <%=trip.destinationCountry%></a></li>
+            <% }) %>
+        </ul>
+        <% } %>
+        <a href="/users"><button href="/users" class="login-button">Login</button></a>
+        <a href="/users/new"><button href=class="create-user-button">Create a new user</button></a>
+        <script src="" async defer></script>
+    </body>
+</html>

@@ -13,6 +13,7 @@ router.get('/', async (req, res)=>{
 })
 
 
+
 //LOG USER IN ROUTE(POST)
 router.post("/login", async (req, res)=>{
     try{
@@ -37,6 +38,7 @@ router.post("/login", async (req, res)=>{
         }else{
             //IF USERNAME DOESNT EXIST IN DB REDIRECT TO LOGIN PAGE
             res.redirect("/users")
+            //not working
         }
     //DB FUCK-UPS
     }catch(err){
@@ -136,10 +138,10 @@ router.get('/:id', async (req, res)=>{
     try{
         //QUERIES DB TO FIND SPECIFIC USER BY ID
         const user = await User.findById(req.params.id)
-        const userTrips = await Trip.find(user)
+        // const userTrips = await Trip.find(user)
         res.render("users/show.ejs", {
             user: user,
-            trips: userTrips
+            // trips: userTrips
         })
     //DB FUCK-UPS
     }catch(err){

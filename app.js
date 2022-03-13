@@ -10,6 +10,7 @@ const store = new MongoDBStore({
     collection: 'userSessions'
 });
 const userController = require('./controllers/userController');
+const tripController = require('./controllers/tripController');
 const port = process.env.PORT || 3000
 
 
@@ -33,6 +34,7 @@ app.use(methodOverride('_method'))
 
 //USER CONTROLLER
 app.use('/users', userController)
+app.use('/trips', tripController)
 
 
 app.listen(port, ()=>{
