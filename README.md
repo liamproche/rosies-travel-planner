@@ -38,28 +38,30 @@ USER STORY
 
 
 ROUTES
-TRIP INDEX PAGE [1/7]
+#TRIP INDEX PAGE [1/7]
     -World map showing user destinations
 
-TRIP SHOW FORM TO CREATE [2/7]
-    -Renders form to create trip
-    -Re-directs back to user show page
+#TRIP SHOW FORM TO CREATE [2/7]
+    #-Renders form to create trip
 
-TRIP CREATE ROUTE(POST) [3/7]
-    -Create the actual trip    
+#TRIP CREATE ROUTE(POST) [3/7]
+    #-Create the actual trip  
+    #-Redirects to user show page  
 
-TRIP SHOW PAGE [4/7]
+#TRIP SHOW PAGE [4/7]
+    #-The show page of a specific trip
     -Lists price of current trip
     -Possible addition of more information
+    -Links to login or create new user?
 
-TRIP SHOW FORM TO EDIT PAGE [5/7]
-    -Show form to edit trip
+#TRIP SHOW FORM TO EDIT PAGE [5/7]
+    #-Show form to edit trip
 
 TRIP EDIT ROUTE [6/7]
     -Edits the trip, dates, layovers
 
-TRIP DELETE ROUTE [7/7]
-    -Deletes the trip
+#TRIP DELETE ROUTE [7/7]
+    #-Deletes the trip
 
 #USER INDEX ROUTE [1/7]
     #-Show form to login in
@@ -72,7 +74,7 @@ TRIP DELETE ROUTE [7/7]
     #-Creates the user
     #-Routes to their user show page
 
-USER SHOW PAGE [4/7]
+#USER SHOW PAGE [4/7]
     #-Lists all trips from user  <--Needs testing after trips added
     -Lists prices of all trips from user <--Stretch goal
     #-Has option to create new trip
@@ -117,6 +119,28 @@ EJS TEMPLATES
             #-Button to delete user
     
     TRIPS
+        #TRIPS INDEX PAGE
+            #-Shows all trips created by every user
+            #-Log-in Button
+            #-Create new user button
+        
+        TRIPS SHOW PAGE
+            -Shows all information about a trip created by any user
+            -Button back to trips index page
+        
+        #EDIT FORM
+            #-Field to edit destination city
+            #-Field to edit destination country
+            #-Submit button
+        
+        #CREATE TRIP FORM
+            #-Field for destination country
+            #-Field for destination city
+            #-Submit form button
+
+
+KNOWN ISSUES
+    -Edit and delete does not update user trip array
 
 
 STRETCH GOALS

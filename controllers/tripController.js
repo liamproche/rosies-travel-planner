@@ -26,8 +26,6 @@ router.get('/new/:userID', async (req, res) => {
     } catch (err) {
         res.send("something with router . get")
     }
-
-    // res.redirect('/users')
 })
 
 
@@ -52,16 +50,21 @@ router.post('/:id/:UserID', async (req, res) => {
     }
 })
 
+
+//EXTRA MIDDLEWARE ROUTE FOR USER ROUTING AFTER EDITING A TRIP
+router.get('/:id', async (req, res)=>{
+    const trip = await Trip.findById(req.params.id)
+    res.render("trips/show.ejs", {
+        trip: trip
+    })
+})
+
 // TRIP SHOW PAGE [4/7]
 //     -Lists price of current trip
 //     -Possible addition of more information
-// router.get('user/:id', async (req,res)=>{
-//         const trips = await Trip.findById(req.params.id)
-//         res.render("")
-// })
 router.get('/show/:id', async (req, res) => {
     const trip = await Trip.findById(req.params.id)
-    res.render("trips/show.ejs", {
+    res.render("../views/trips/show.ejs", {
         trip: trip
     })
 })
@@ -69,9 +72,31 @@ router.get('/show/:id', async (req, res) => {
 
 // TRIP SHOW FORM TO EDIT PAGE [5/7]
 //     -Show form to edit trip
+router.get('/:id/edit', async (req, res) => {
+    try {
+        const trip = await Trip.findById(req.params.id)
+        res.render('../views/trips/edit.ejs', {
+            trip: trip
+        })
+    } catch (err) {
+        res.sendStatus(500)
 
+    }
+})
 // TRIP EDIT ROUTE [6/7]
 //     -Edits the trip, dates, layovers
+router.put('/:id', async (req, res)=>{
+    try{
+         await Trip.findByIdAndUpdate(req.params.id, req.body)
+         res.redirect(`/trips/${req.params.id}`)
+         console.log("editing trip")
+    }catch(err){
+         console.log("There was an error editing this trip")
+         res.sendStatus(500)
+    }
+ })
+
+
 
 // TRIP DELETE ROUTE [7/7]
 //     -Deletes the trip
@@ -90,5 +115,4 @@ router.delete('/:id', async (req, res) => {
 })
 
 module.exports = router
-
 

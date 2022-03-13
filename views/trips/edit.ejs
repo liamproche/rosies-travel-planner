@@ -10,11 +10,15 @@
     </head>
     <body>
         <h1>This is the form to edit a trip</h1>
-        <form action="/trips/new" method="POST">
+        <h2>The current destination city is: <%=trip.destinationCity%></h2>
+        <h2>The current destination Country is: <%=trip.destinationCountry%></h2>
+        
+        <form action="/trips/<%=trip._id%>?_method=PUT" method="POST">
             <label for="destinationCity">Destination City:</label>
             <input type="text" name="destinationCity" required>
             <label for="destinationCountry">Destination Country:</label>
-            <input type="text" name="destinationCountry">           
+            <input type="text" name="destinationCountry" required>           
+            <input type="submit">
         </form>
         <script src="" async defer></script>
     </body>
