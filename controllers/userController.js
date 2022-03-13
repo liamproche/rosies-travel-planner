@@ -57,15 +57,17 @@ router.post('/new', async (req, res)=>{
     //CHANGES USER PASSWORD TO ENCRYPTED PASSWORD
     req.body.password = hashedPassword
     //CREATES USER IN DB
+    //TRY CATCH BLOCK IN CASE CREATE USER FAILS VALIDATION
     try{
         const newUser = await User.create(req.body);
         //TO ENSURE NEW USER WAS CREATED
         console.log(newUser)
         //SENDS USER TO USER SHOW PAGE
         res.redirect(`/users`)
+    //NOTE-NEEDS ELABORATION WHY DID VALIDATION FAIL, RETURN SPECIFIC MESSAGE TO USER REROUTE USER TO CREATE USER PAGE??
     }catch(err){
         console.log(err)
-        res.send('That user name is taken')
+        res.send('Failed User Validation')
     }
 })
 
