@@ -4,22 +4,21 @@ APP DESCRIPTION
 This travel planning app will allow users to save their bucket-list destinations and use an API call to tell them the airfare cost for dates that they specify to each of their destinations. Stretch social integration so users can see destinations others (friends???? people they follow???) have created. 
 
 
-
 MODELS
 
-USER
-    -username
-    +display name? Want to see "Steven Luu" not "stevenluu566" [does not have to be unique]
-    -password 
-    -Starting Location
-    -Date of departure- Needs to be stored in user model???
-    -Date of return (may not be a thing)- Needs to be stored in user model???
-    -Timestamp 
+#USER
+    #-username
+    #-display name? Want to see "Steven Luu" not "stevenluu566" [does not have to be unique]
+    #-password (curently a string min-length:8 maxlength:20) 
+    #-Starting Location
+    #-Date of departure- Needs to be stored in user model???
+    #-Date of return (may not be a thing)- Needs to be stored in user model???
+    #-Timestamp
 
-TRIP
-    -Destination
-    -Flight Price
-    -Timestamp
+#TRIP
+    #-Destination
+    #-Flight Price
+    #-Timestamp
     -Additional Content:
     -resturants [or an API with local bars, must-gos, resturants]
 
@@ -62,37 +61,62 @@ TRIP EDIT ROUTE [6/7]
 TRIP DELETE ROUTE [7/7]
     -Deletes the trip
 
+#USER INDEX ROUTE [1/7]
+    #-Show form to login in
 
-USER INDEX ROUTE [1/7]
-    -Show form to login in
-    -Has option to create a user
+#USER SHOW FORM TO CREATE NEW USER ROUTE [2/7]
+    #-Renders form to create new user
+    #-Redirect to user show page
 
-USER SHOW FORM TO CREATE NEW USER ROUTE [2/7]
-    -Renders form to create new user
-    -POST on submit 
-    -Redirect to user show page
-
-USER CREATE ROUTE(POST) [3/7]
-    -Creates the user
-    -Routes to user show page
+#USER CREATE ROUTE(POST) [3/7]
+    #-Creates the user
+    #-Routes to their user show page
 
 USER SHOW PAGE [4/7]
-    -Lists all trips from user
-    -Lists prices of all trips from user
-    -Has option to create new trip
-    -Has option to delete a trip
-    -Has option to edit a trip
+    #-Lists all trips from user  <--Needs testing after trips added
+    -Lists prices of all trips from user <--Stretch goal
+    #-Has option to create new trip
+    -Has option to delete a trip <--Add after trips routes created
+    -Has option to edit a trip <--Add after trips routes created
+    #-Has logout option
+    #-Has option to edit a user
 
-USER SHOW FORM TO EDIT PAGE [5/7]
-    -Show form to edit user
-    -Option to delete user
+#USER SHOW FORM TO EDIT PAGE [5/7]
+    #-Show form to edit user
 
-USER EDIT ROUTE [6/7]
-    -Edits the user
+#USER EDIT ROUTE [6/7]
+    #-Edits the user
 
-USER DELETE ROUTE [7/7]
-    -Deletes the User
+#USER DELETE ROUTE [7/7]
+    #-Deletes the User
 
+EJS TEMPLATES
+    USERS
+        #CREATE USER FORM
+            #-Field for username
+            #-Field for Name (display)
+            #-Field for password
+            -Field to confirm password?
+            #-Field for departure city
+            #-POSTS Create user on submit
+        
+        #LOGIN-FORM
+            #-Field for username(required)
+            #-Field for password(required)
+            #-Button to new user show form
+            #-POSTS to users/login page to login
+
+        #EDIT FORM
+            -Field to change username?
+            #-Field to change display name
+            #-Field to change password <--Tricky... Will require middle-ware with bcrypt
+            -Field to confirm password change?
+            #-Field to change departure city
+            #-Field to change depature date <--Still not sure this should be included in user data, maybe trip?
+            #-Field to change return date <-- ""
+            #-Button to delete user
+    
+    TRIPS
 
 
 FUNCTION NEEDS
@@ -103,9 +127,10 @@ FUNCTION NEEDS
 
 STRETCH GOALS
 
-POSSIBLE THINGS TO ADD TO USER MODEL
+POSSIBLE THINGS TO ADD TO TRIP MODEL
     -Restaurants they want to visit
     -Cultural events
+
 
 ADDITIONAL STRETCH GOALS
     -Social Media integration [shows trending destinations and/or friends saved destinations]
@@ -129,7 +154,6 @@ LUTHER - API and bootstrap
 
 
 STEVEN- Backend JS jquery middleware
-
 
 
 NOTES
