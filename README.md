@@ -52,7 +52,7 @@ ROUTES
     #-The show page of a specific trip
     -Lists price of current trip
     -Possible addition of more information
-    -Links to login or create new user?
+    #-Links to login or create new user
 
 #TRIP SHOW FORM TO EDIT PAGE [5/7]
     #-Show form to edit trip
@@ -125,7 +125,7 @@ EJS TEMPLATES
             #-Create new user button
         
         TRIPS SHOW PAGE
-            -Shows all information about a trip created by any user
+            #-Shows all information about a trip created by any user
             -Button back to trips index page
         
         #EDIT FORM
@@ -143,6 +143,37 @@ KNOWN ISSUES
     -Edit and delete does not update user trip array
 
 
+
+TASK ASSIGNMENT
+LIAM- HTML EJS Models, user routes
+MICHAEL - CSS [grid / FlexBox], trip routes
+LUTHER - API and bootstrap
+STEVEN- Backend JS jquery middleware
+
+
+MVP CHECK
+    #-Working full-stack application, built by our team using Node.js, Mongoose, Express and EJS
+    #-Adhere to MVC file structure
+    #-At least one non-user model with all 7 RESTful routes and full CRUD
+    #-A User model with functioning registration, log-in and log-out abilities
+    #-Your non-user model is connected to the user that created it
+    #-A git repository not inside the class repo
+    -At least 1 GitHub commit & push per day
+    -Be deployed online and accessible to the public via Heroku
+    -A README.md file with a link to your hosted app, explanations of the technologies used, the approach was taken, unsolved problems, user stories, and notes to yourself so you can come back to your project later in the course and be able to pick up your train of thought, etc
+
+
+TO DO?
+    -Only user that created trip should be able to edit/delete trip?
+    -Password security measures?
+    -Messages to users if they pick a duplicate user name?
+    -State/region field on trips?
+    -Partials? (Nav)?
+    -Nav changes from log-in/create account to actual nav?
+    -Front-end?
+    -Message to users when creating fails validation?
+    -isLoggedin bit -> would allow information on page to change dependent on if user logged in?
+    
 STRETCH GOALS
 
 FUNCTION NEEDS
@@ -164,19 +195,6 @@ SOCIAL MEDIA INTEGRATION IDEAS (Stretch goal)
     -Index page world map with pins of various trending destinations
     -Users can checkout trips from other users and add trips that other users create
 
-
-TASK ASSIGNMENT
-
-LIAM- HTML EJS Models, user routes
-
-
-MICHAEL - CSS [grid / FlexBox], trip routes
-
-
-LUTHER - API and bootstrap
-
-
-STEVEN- Backend JS jquery middleware
 
 
 NOTES
