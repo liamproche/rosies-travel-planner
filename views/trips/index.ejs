@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
+        <nav>
+            <%-include ('../partials/nav.ejs')%>
+        </nav>
         <h1> TRENDING trips</h1>
         <% if(trips.length === 0) {%>
             <h2>There are no trips in the database!</h2>

@@ -10,9 +10,11 @@ const Trip = require('../models/trip');
 //     -World map showing user destinations
 router.get('/', async (req, res) => {
     const trips = await Trip.find();
+    const userId = (req.session.userId)
     res.render('../views/trips/index.ejs', {
-        isLoggedIn : req.session.isLoggedIn,
-        trips: trips
+        isLoggedIn: req.session.isLoggedIn,
+        trips: trips,
+        userId: userId
     })
 })
 
@@ -75,7 +77,6 @@ router.get('/:id', async (req, res) => {
         // console.log(`req.session.userId: ${req.session.userId}`)
         let tripOwner = trip.user+""
         let currUser = req.session.userId + ""
-        
         console.log(`match:${tripOwner===currUser}`)
         // console.log(`trip.user typeof? ${typeof(trip.user._id)}`)
         // console.log(`req.session.userId typeof? ${typeof(req.session.userId)}`)
