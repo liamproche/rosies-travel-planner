@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <%-include ('../partials/head.ejs')%>
     </head>
     <body>
         <h1>This is the form to edit a user</h1>
@@ -19,10 +14,6 @@
             <!-- <input type="password" name="password" minlegnth=8 required>  -->
             <label for="departureCity">Departure City:</label>
             <input type="text" name="departureCity">
-            <label for="departureDate">Departure Date:</label>
-            <input type="date" name="departureDate">
-            <label for="returnDate">Return Date:</label>
-            <input type="date" name="returnDate">
             <input type="submit">            
         </form>
         <form action="/users/<%=user._id%>/?_method=DELETE" method="POST">

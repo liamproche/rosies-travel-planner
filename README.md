@@ -126,7 +126,7 @@ EJS TEMPLATES
         
         TRIPS SHOW PAGE
             #-Shows all information about a trip created by any user
-            -Button back to trips index page
+            #-Button back to trips index page
         
         #EDIT FORM
             #-Field to edit destination city
@@ -158,17 +158,17 @@ MVP CHECK
     -A README.md file with a link to your hosted app, explanations of the technologies used, the approach was taken, unsolved problems, user stories, and notes to yourself so you can come back to your project later in the course and be able to pick up your train of thought, etc
 
 
-KNOWN ISSUES
-    -Edit and delete does not update user trip array
+#KNOWN ISSUES
+    #-Edit and delete does not update user trip array
 
 
 TO DO?
     #-Figure out error on delete route
     #-Only user that created trip should be able to edit/delete trip?
+    -Partials? (Nav)?
     -Server deployment?
     -Message to users when creating fails validation?
     -Messages to users if they pick a duplicate user name?
-    -Partials? (Nav)?
     -Nav changes from log-in/create account to actual nav?
     -Password security measures?
     -Gray out calendar days that have passed
@@ -192,6 +192,7 @@ POSSIBLE THINGS TO ADD TO TRIP MODEL
 ADDITIONAL STRETCH GOALS
     -Social Media integration [shows trending destinations and/or friends saved destinations]
     -Allow users to sign-in through google
+    -like feature to know what is trending
 
 
 SOCIAL MEDIA INTEGRATION IDEAS (Stretch goal)
