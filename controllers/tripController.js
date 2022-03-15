@@ -130,11 +130,11 @@ router.delete('/:id', async (req, res) => {
     try {
         //QUERIES THE DB TO FIND THE TRIP
         const trip = await Trip.findById(req.params.id)
-        //QUERIES THE DB TO FIND THE TRIP
+        //QUERIES THE DB TO FIND THE USER
         const user = await User.findById(trip.user)
         //LOOPS THROUGH ARRAY OF TRIPS STORED IN USER MODEL
         for (let i = 0; i < user.trips.length; i++){
-            //STRING CONVERSION TO MATCH IDS
+            //STRING CONVERSION TO MATCH IDs
             if(String(user.trips[i]._id) === String(trip._id)){
                 //SPLICE THAT ARRAY!!!!
                 user.trips.splice(i, 1)
