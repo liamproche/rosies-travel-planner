@@ -19,7 +19,7 @@
             <ul class="trips">
                 <%user.trips.forEach((trip)=>{%>
                         <!-- LISTS USERS TRIPS BY CITY ONLY HREF TIED TO TRIP SHOW ROUTE -->
-                    <li><a href="/trips/show/<%=trip._id%>"><%=trip.destinationCity%></a></li>
+                    <li><a href="/trips/<%=trip._id%>"><%=trip.destinationCity%></a></li>
                     <%})%>
             </ul>
         <%}%>

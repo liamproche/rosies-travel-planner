@@ -10,8 +10,10 @@ const userSchema = new Schema({
     departureDate: Date,
     returnDate: Date,
     // NEED PUSH HERE ON CREATE TRIP ROUTE
+    trip: {type: Schema.Types.ObjectId, ref: 'Trip'},
     trips: Array
-},{timestamps: true})
+},
+    {timestamps: true})
 
 const User = mongoose.model('User', userSchema);
 

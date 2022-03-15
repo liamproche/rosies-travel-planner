@@ -1,7 +1,9 @@
 const express = require('express');
 const session = require('express-session');
 const methodOverride = require('method-override');
+const User = require('./models/user');
 const MongoDBStore = require('connect-mongodb-session')(session);
+const isLoggedIn = require('./middleware/isLoggedIn')
 require('dotenv').config();
 require('./db-utils/connect');
 const app = express();
@@ -15,7 +17,7 @@ const port = process.env.PORT || 3000
 
 
 //MUST BE PLACED BEFORE USER CONTROLLER
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
@@ -28,6 +30,23 @@ app.use(session({
 }))
 
 
+//SENDS SESSION INFO TO TEMPLATES
+app.use(async (req, res, next) => {
+    // This will send info from session to templates
+    res.locals.isLoggedIn = req.session.isLoggedIn
+    if (req.session.isLoggedIn) {
+        const currentUser = req.session.userId
+        // console.log(currentUser)
+        res.locals.username = currentUser.username
+        res.locals.userId = req.session.userId.toString()
+    }
+    next()
+})
+
+
+
+
+
 //METHOD OVERRIDE FOR PUT & DELETE REQUESTS
 app.use(methodOverride('_method'))
 
@@ -37,6 +56,6 @@ app.use('/users', userController)
 app.use('/trips', tripController)
 
 
-app.listen(port, ()=>{
+app.listen(port, () => {
     console.log('App is running')
 })

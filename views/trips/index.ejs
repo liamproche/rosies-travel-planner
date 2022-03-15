@@ -16,7 +16,7 @@
         <% } else { %> 
         <ul class="trips">
             <% trips.forEach((trip)=>{ %>
-                    <li><a href="/trips/show/<%=trip._id%>"><%=trip.destinationCity%>, <%=trip.destinationCountry%></a></li>
+                    <li><a href="/trips/<%=trip._id%>"><%=trip.destinationCity%>, <%=trip.destinationCountry%></a></li>
             <% }) %>
         </ul>
         <% } %>
