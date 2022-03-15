@@ -51,9 +51,23 @@ app.use(async (req, res, next) => {
 app.use(methodOverride('_method'))
 
 
+
 //USER CONTROLLER
 app.use('/users', userController)
 app.use('/trips', tripController)
+
+
+
+//FOR EMERGENCY LOGOUTS DURING BUILD PHASE REMOVE FOR PRODUCTION
+app.get('/e', (req, res)=>{
+    res.redirect('/users/logout')
+})
+
+
+//POINTS USER TO HOME PAGE
+app.get('/', (req, res)=>{
+    res.redirect('/trips')
+})
 
 
 app.listen(port, () => {
