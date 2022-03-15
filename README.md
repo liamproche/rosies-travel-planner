@@ -163,21 +163,26 @@ KNOWN ISSUES
     #-Edit and delete does not update user trip array
     -Nav sometimes on user show page
     -Nav shows link to page user is already on
+    -Dates not submitting 
+    -Message to users when creating fails validation?
+    -Messages to users if they pick a duplicate user name?
 
 
 TO DO?
     #-Figure out error on delete route
     #-Only user that created trip should be able to edit/delete trip?
-    -Move dates out of User and into user show page
-    -Partials? (Nav)?
-    -Server deployment?
-    -Message to users when creating fails validation?
-    -Messages to users if they pick a duplicate user name?
-    -Nav changes from log-in/create account to actual nav?
-    -Password security measures?
+    #-Move dates out of User and into user show page
+    #-Partials? (Nav)?
+    #-Server deployment?
+    -Google docs map API
+    -Flight tracker API
+    -Google places API
+    -Meet to discuss and wireframe Front-end
+    #-Nav changes from log-in/create account to actual nav?
     -Gray out calendar days that have passed
     -State/region field on trips?
-    -Front-end?
+    -Password security measures?
+d
   
     
 STRETCH GOALS
@@ -241,7 +246,8 @@ Overall goal:
     -Takes all destinations in trip db and displays a world map with flags of every destination displayed on the map
 
 
-
+LINK TO DEPLOYED APP:
+https://rosies-travel-tracker-app.herokuapp.com/
 
         
 
