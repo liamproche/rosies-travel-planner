@@ -139,11 +139,6 @@ EJS TEMPLATES
             #-Submit form button
 
 
-KNOWN ISSUES
-    -Edit and delete does not update user trip array
-
-
-
 TASK ASSIGNMENT
 LIAM- HTML EJS Models, user routes
 MICHAEL - CSS [grid / FlexBox], trip routes
@@ -163,9 +158,14 @@ MVP CHECK
     -A README.md file with a link to your hosted app, explanations of the technologies used, the approach was taken, unsolved problems, user stories, and notes to yourself so you can come back to your project later in the course and be able to pick up your train of thought, etc
 
 
+KNOWN ISSUES
+    -Edit and delete does not update user trip array
+
+
 TO DO?
     #-Figure out error on delete route
     #-Only user that created trip should be able to edit/delete trip?
+    -Server deployment?
     -Message to users when creating fails validation?
     -Messages to users if they pick a duplicate user name?
     -Partials? (Nav)?
