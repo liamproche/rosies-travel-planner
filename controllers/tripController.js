@@ -1,9 +1,9 @@
-
 const User = require('../models/user')
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const Trip = require('../models/trip');
+
 
 // ROUTES
 // TRIP INDEX PAGE [1/7]
@@ -17,6 +17,7 @@ router.get('/', async (req, res) => {
         userId: userId
     })
 })
+
 
 // TRIP SHOW FORM TO CREATE [2/7]
 //     -Renders form to create trip
@@ -61,7 +62,6 @@ router.post('/:id/:UserID', async (req, res) => {
 })
 
 
-
 // TRIP SHOW PAGE [4/7]
 //     -Lists price of current trip
 //     -Possible addition of more information
@@ -81,7 +81,6 @@ router.get('/:id', async (req, res) => {
         // console.log(`trip.user typeof? ${typeof(trip.user._id)}`)
         // console.log(`req.session.userId typeof? ${typeof(req.session.userId)}`)
         // if (res.locals.userId == trip.user ) --> not sure if user would just give you the id, that's something you would want to console log so you can see that actual obj in your terminal and if it doesn't if you the id then you could use .populate
-
             res.render("../views/trips/show.ejs", {
                 trip: trip,
                 tripOwner : tripOwner,
@@ -93,7 +92,6 @@ router.get('/:id', async (req, res) => {
         console.log("not logged in")
     }
 })
-
 
 
 // TRIP SHOW FORM TO EDIT PAGE [5/7]
