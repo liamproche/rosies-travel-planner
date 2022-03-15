@@ -1,10 +1,16 @@
 <!--BEGIN NAVAGATION-->
-    <ul class="nav">
-        <li><a href="/trips">Trending Trips</a></li>
-        <!-- CHECK USER ID IF PAGE FAILS TO RENDER -->
-        <li><a href="/users/<%=userId%>">My Trips</a></li>
-        <%if(isLoggedIn){%>
+    <%if(isLoggedIn){%>
+        <ul class="nav">
+            
+            <li><a href="/trips">Trending Trips</a></li>
+            <!-- CHECK USER ID IF PAGE FAILS TO RENDER -->
+            <li><a href="/users/<%=userId%>">My Trips</a></li>
             <li><a href="/users/logout">Logout</a></li>
-        <%}%>
+            <li><a href="/users/<%=userId%>/edit">Account</a></li>
         </ul>
+    <%}else{%>
+       <ul class="nav"> 
+            <li><a href="/users">Login</a>
+            <a href="/users/new">Create a new user</a>    
+    <%}%>
 <!--END NAVIGATION-->
