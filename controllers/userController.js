@@ -146,6 +146,7 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+
 //DELETE ROUTE
 router.delete('/:id', async (req, res) => {
     //TRY BLOCK FOR DB QUERY

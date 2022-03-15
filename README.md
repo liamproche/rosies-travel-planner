@@ -209,14 +209,6 @@ Early afternoon- 2pm daily check-ins
 
 Delete route:
 -When user is logged in and goes to show page Delete button is available if user is not logged, goes to trip show page and no delete button available
-    
-    -user clicks on trip(show page for trip route)
-
-    -if user is logged in, check to see if they created the trip(db query to find trips that hold this user)
-    
-    -if trip created by logged in user matches show delete/edit button
-
-    -if trip not created by logged in user don't 
 
         
 
