@@ -4,6 +4,9 @@
         <%-include ('../partials/head.ejs')%>
     </head>
     <body>
+        <nav>
+            <%-include ('../partials/nav.ejs')%>
+        </nav>
         <h1>This is the form to edit a user</h1>
         <form action="/users/<%=user._id%>?_method=PUT" method="POST">
             <label for="name">Name:</label>
