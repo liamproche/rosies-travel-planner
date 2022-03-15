@@ -4,7 +4,6 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const Trip = require('../models/trip');
-const isLoggedIn = require('../middleware/isLoggedIn')
 
 // ROUTES
 // TRIP INDEX PAGE [1/7]
@@ -130,27 +129,22 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     //TRY BLOCK FOR DB QUERY
     try {
-        //remove from user's trips array
+        //QUERIES THE DB TO FIND THE TRIP
         const trip = await Trip.findById(req.params.id)
+        //QUERIES THE DB TO FIND THE TRIP
         const user = await User.findById(trip.user)
-        console.log(`trying to delete ${trip.destinationCity} from ${user.username}`)
-        console.log("\nprior:[")
-        for(tripz of user.trip){
-            console.log(tripz)
+        //LOOPS THROUGH ARRAY OF TRIPS STORED IN USER MODEL
+        for (let i = 0; i < user.trips.length; i++){
+            //STRING CONVERSION TO MATCH IDS
+            if(String(user.trips[i]._id) === String(trip._id)){
+                //SPLICE THAT ARRAY!!!!
+                user.trips.splice(i, 1)
+                user.save()
+            }
         }
-        for(let i = 0; i < user.trips.length; i++){
-            if(user.trips[i]._id === trip._id)
-            user.trips.splice(i,1)
-        }
-        console.log("]\npost: [")
-        for(tripz of user.trip){
-            console.log(tripz)
-        }
-        console.log("]")
-        //QUERIES DB TO FIND SPECIFIC USER AND DELETES THEM
+        //DELETES TRIP FROM DB
         await Trip.findByIdAndDelete(req.params.id)
-        //SENDS USER TO LOGIN PAGE?
-        //NOT SURE WHRERE TO REDIRECT AFTER A TRIP DELETE
+        //SENDS USER TO USER SHOW PAGE
         res.redirect(`/users/${user._id}`)
         //DB FUCK-UPS
     } catch (err) {

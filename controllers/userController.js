@@ -137,11 +137,8 @@ router.get('/:id', async (req, res) => {
     try {
         //QUERIES DB TO FIND SPECIFIC USER BY ID
         const user = await User.findById(req.params.id)
-
-        // const userTrips = await Trip.find(user)
         res.render("users/show.ejs", {
             user: user,
-            // trips: userTrips
         })
         //DB FUCK-UPS
     } catch (err) {
