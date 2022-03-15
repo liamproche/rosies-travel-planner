@@ -30,7 +30,11 @@
         });
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu14iOt-gr9Mp4pyfcV1YhqXBGZPS4hlI&callback=initMap"
+    <script src='https://maps.googleapis.com/maps/api/js?key<%=process.env.GOOGLE_API_KEY%>&callback=initMap'
     async defer></script>
   </body>
 </html>
+
+<!-- </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.GOOGLE_API_KEY%>&callback=initMap"
+    async defer></script> -->

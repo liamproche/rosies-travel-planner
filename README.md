@@ -159,8 +159,10 @@ MVP CHECK
     -A README.md file with a link to your hosted app, explanations of the technologies used, the approach was taken, unsolved problems, user stories, and notes to yourself so you can come back to your project later in the course and be able to pick up your train of thought, etc
 
 
-#KNOWN ISSUES
+KNOWN ISSUES
     #-Edit and delete does not update user trip array
+    -Nav sometimes on user show page
+    -Nav shows link to page user is already on
 
 
 TO DO?
@@ -193,7 +195,7 @@ FUNCTION NEEDS
                 -searches multiple flight companies
                 -https://rapidapi.com/obryan-software-obryan-software-default/api/compare-flight-prices/pricing
 
-    -GoogleMaps API???
+    #-GoogleMaps API???
     -log in redirect opens in new tab
 
 
