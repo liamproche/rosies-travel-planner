@@ -4,6 +4,9 @@
         <%-include ('../partials/head.ejs')%>
     </head>
     <body>
+        <nav>
+            <%-include ('../partials/nav.ejs')%>
+        </nav>
         <h1>This is the form to create a new trip</h1>
         <form action="/trips/new/<%=user._id%>" method="POST">
             <label for="destinationCity">Destination City:</label>
