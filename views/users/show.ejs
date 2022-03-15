@@ -1,11 +1,6 @@
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <%-include ('../partials/head.ejs')%>
     </head>
     <body>
         <h1>This is the user show page</h1>
@@ -17,6 +12,11 @@
             <h2>There are no trips yet</h2>
         <!-- FUNCTION TO ADD TRIPS TO PAGE FOR SPECIFIC USER -->
         <%}else{%>
+            <h2>What dates would you like to travel?</h2>
+            <p>Departure Date:</p><input type="date" name="departureDate">
+            <p>Return Date</p><input type="date" name="returnDate">
+            <input type="submit">
+            <h2>Your trips:</h2>
             <ul class="trips">
                 <%user.trips.forEach((trip)=>{%>
                         <!-- LISTS USERS TRIPS BY CITY ONLY HREF TIED TO TRIP SHOW ROUTE -->
@@ -26,8 +26,6 @@
         <%}%>
         <!-- BELOW NEEDS TO LINK TO SHOW FORM TO CREATE TRIP PAGE -->
         <a href="/trips/new/<%=user._id%>"><button class="create-trip-button">Create a Trip!</button></a> 
-        <a href="/users/<%=user._id%>/edit"><button>Edit Account</button></a>
-        <a href="/users/logout"><button class="logout-button">Logout</button></a>
         <script src="" async defer></script>
     </body>
 </html>

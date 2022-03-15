@@ -7,8 +7,6 @@ const userSchema = new Schema({
     name: {type:String, maxlength: 50},
     password: {type:String, minlength: 8, maxlength: 500, required: true},
     departureCity: String,
-    departureDate: Date,
-    returnDate: Date,
     // NEED PUSH HERE ON CREATE TRIP ROUTE
     trip: {type: Schema.Types.ObjectId, ref: 'Trip'},
     trips: Array

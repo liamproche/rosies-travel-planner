@@ -1,6 +1,7 @@
 # unit-2-project
 APP DESCRIPTION
 
+
 This travel planning app will allow users to save their bucket-list destinations and use an API call to tell them the airfare cost for dates that they specify to each of their destinations. Stretch social integration so users can see destinations others (friends???? people they follow???) have created. 
 
 
@@ -126,7 +127,7 @@ EJS TEMPLATES
         
         TRIPS SHOW PAGE
             #-Shows all information about a trip created by any user
-            -Button back to trips index page
+            #-Button back to trips index page
         
         #EDIT FORM
             #-Field to edit destination city
@@ -159,16 +160,19 @@ MVP CHECK
 
 
 KNOWN ISSUES
-    -Edit and delete does not update user trip array
+    #-Edit and delete does not update user trip array
+    -Nav sometimes on user show page
+    -Nav shows link to page user is already on
 
 
 TO DO?
     #-Figure out error on delete route
     #-Only user that created trip should be able to edit/delete trip?
+    -Move dates out of User and into user show page
+    -Partials? (Nav)?
     -Server deployment?
     -Message to users when creating fails validation?
     -Messages to users if they pick a duplicate user name?
-    -Partials? (Nav)?
     -Nav changes from log-in/create account to actual nav?
     -Password security measures?
     -Gray out calendar days that have passed
@@ -180,7 +184,18 @@ STRETCH GOALS
 
 FUNCTION NEEDS
     -API data on flight price
-    -GoogleMaps API???
+        -POSSIBLE API'S
+            -AeroDataBox [ 20/month ]
+                -prob wont go with this one
+                -Enthusiast-driven and flight data API suitable for smaller travel, or aviation applications, researchers, small teams, and individual developers.
+                -https://rapidapi.com/aedbx-aedbx/api/aerodatabox/
+
+            -Compare Flight Prices [ 1/minute ]
+                -this one looks okay 
+                -searches multiple flight companies
+                -https://rapidapi.com/obryan-software-obryan-software-default/api/compare-flight-prices/pricing
+
+    #-GoogleMaps API???
     -log in redirect opens in new tab
 
 
@@ -192,6 +207,7 @@ POSSIBLE THINGS TO ADD TO TRIP MODEL
 ADDITIONAL STRETCH GOALS
     -Social Media integration [shows trending destinations and/or friends saved destinations]
     -Allow users to sign-in through google
+    -like feature to know what is trending
 
 
 SOCIAL MEDIA INTEGRATION IDEAS (Stretch goal)
@@ -204,6 +220,25 @@ NOTES
 *Flight rater API- budgets out which of your trips and what the overall cost of each trip will be
 Early afternoon- 2pm daily check-ins
 
+
+DATES SEARCH PSEUDO-CODE
+Overall goal:
+    -User enters dates that they have free, program makes an API call on flight prices for all destinations for the user created trips (or should this be all trips anyone has created?). Program reurns list of trips sorted by price for the dates the user has specified
+
+Pseudo-Coding
+    -Get dates user entered from input fields
+    -Puts dates into API call search parameters?  <--dependent on how API takes search parameters
+    -Loops through users trips array to determine destination
+    -Pushes destinations into a new array for API search parameters <--dependent on how API takes search parameters
+    -Puts destinations in users trips into search parameters for API call
+    -Makes API call
+    -Somehow ties lowest flight price to user trip
+    -Displays the flight price next to the user trip on the users show page
+    
+
+GOOGLE MAPS PSEUDO CODE
+Overall goal:
+    -Takes all destinations in trip db and displays a world map with flags of every destination displayed on the map
 
 
 

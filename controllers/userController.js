@@ -125,8 +125,9 @@ router.put('/:id', async (req, res) => {
 router.get('/logout', (req, res) => {
     //KILLS THE SESSION
     req.session.destroy(() => {
+        console.log('user is logged out')
         //REDIRECTS TO LOGIN PAGE
-        res.redirect("/users")
+        res.redirect("/")
     })
 })
 

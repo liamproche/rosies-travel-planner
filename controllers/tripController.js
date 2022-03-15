@@ -18,6 +18,15 @@ router.get('/', async (req, res) => {
     })
 })
 
+//TEMP GOOGLE MAP ROUTE
+
+router.get('/googlemaps', async (req, res) => {
+    const trips = await Trip.find();
+    const userId = (req.session.userId)
+    res.render('../views/trips/tempGoogle.ejs', {
+    })
+})
+
 
 // TRIP SHOW FORM TO CREATE [2/7]
 //     -Renders form to create trip
