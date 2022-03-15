@@ -112,12 +112,27 @@ router.get('/:id/edit', async (req, res) => {
 // TRIP EDIT ROUTE [6/7]
 //     -Edits the trip, dates, layovers
 router.put('/:id', async (req, res) => {
-    try {
+    try {   
+        //UPDATES TRIP IN DB
         await Trip.findByIdAndUpdate(req.params.id, req.body)
+        //FINDS UPDATED TRIP IN DB
+        const trip = await Trip.findById(req.params.id)
+        //FINDS USER OF TRIP
+        const user = await User.findById(req.session.userId)
+        //GOES THROUGH TRIPS ARR IN USER MODEL
+        for(let i = 0; i < user.trips.length; i++){
+            //IF REQUEST ID MATCHES THE TRIP ID
+            if(req.params.id == trip._id){
+                //SPLICE THE USER ARRAY WITH THE TRIP 
+                user.trips.splice(i, 1, trip)
+                //SAVE THE NEW USER IN THE DB
+                user.save();
+            }
+        }  
+        //SEND THEM BACK TO THE SHOW PAGE (OR MY TRIPS PAGE???)
         res.redirect(`/trips/${req.params.id}`)
-        console.log("editing trip")
     } catch (err) {
-        console.log("There was an error editing this trip")
+        console.log(err)
         res.sendStatus(500)
     }
 })
@@ -132,6 +147,8 @@ router.delete('/:id', async (req, res) => {
         const trip = await Trip.findById(req.params.id)
         //QUERIES THE DB TO FIND THE USER
         const user = await User.findById(trip.user)
+        
+        
         //LOOPS THROUGH ARRAY OF TRIPS STORED IN USER MODEL
         for (let i = 0; i < user.trips.length; i++){
             //STRING CONVERSION TO MATCH IDs
