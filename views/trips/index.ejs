@@ -20,8 +20,10 @@
             <% }) %>
         </ul>
         <% } %>
-        <a href="/users"><button href="/users" class="login-button">Login</button></a>
-        <a href="/users/new"><button href=class="create-user-button">Create a new user</button></a>
+        <%if(!isLoggedIn){%>
+            <a href="/users"><button href="/users" class="login-button">Login</button></a>
+            <a href="/users/new"><button href=class="create-user-button">Create a new user</button></a>
+        <%}%>
         <script src="" async defer></script>
     </body>
 </html>

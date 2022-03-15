@@ -1,8 +1,10 @@
+
 const User = require('../models/user')
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const Trip = require('../models/trip');
+const isLoggedIn = require('../middleware/isLoggedIn')
 
 // ROUTES
 // TRIP INDEX PAGE [1/7]
@@ -10,6 +12,7 @@ const Trip = require('../models/trip');
 router.get('/', async (req, res) => {
     const trips = await Trip.find();
     res.render('../views/trips/index.ejs', {
+        isLoggedIn : req.session.isLoggedIn,
         trips: trips
     })
 })
