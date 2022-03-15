@@ -139,11 +139,6 @@ EJS TEMPLATES
             #-Submit form button
 
 
-KNOWN ISSUES
-    -Edit and delete does not update user trip array
-
-
-
 TASK ASSIGNMENT
 LIAM- HTML EJS Models, user routes
 MICHAEL - CSS [grid / FlexBox], trip routes
@@ -163,18 +158,23 @@ MVP CHECK
     -A README.md file with a link to your hosted app, explanations of the technologies used, the approach was taken, unsolved problems, user stories, and notes to yourself so you can come back to your project later in the course and be able to pick up your train of thought, etc
 
 
+KNOWN ISSUES
+    -Edit and delete does not update user trip array
+
+
 TO DO?
-    -Figure out error on delete route
+    #-Figure out error on delete route
     #-Only user that created trip should be able to edit/delete trip?
-    -Password security measures?
+    -Server deployment?
+    -Message to users when creating fails validation?
     -Messages to users if they pick a duplicate user name?
-    -State/region field on trips?
     -Partials? (Nav)?
     -Nav changes from log-in/create account to actual nav?
-    -Front-end?
-    -Message to users when creating fails validation?
-    -isLoggedin bit -> would allow information on page to change dependent on if user logged in?
+    -Password security measures?
     -Gray out calendar days that have passed
+    -State/region field on trips?
+    -Front-end?
+  
     
 STRETCH GOALS
 
@@ -207,16 +207,6 @@ Early afternoon- 2pm daily check-ins
 
 
 
-Delete route:
--When user is logged in and goes to show page Delete button is available if user is not logged, goes to trip show page and no delete button available
-    
-    -user clicks on trip(show page for trip route)
-
-    -if user is logged in, check to see if they created the trip(db query to find trips that hold this user)
-    
-    -if trip created by logged in user matches show delete/edit button
-
-    -if trip not created by logged in user don't 
 
         
 

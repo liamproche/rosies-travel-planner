@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
+        <nav>
+            <%-include ('../partials/nav.ejs')%>
+        </nav>
         <h1> TRENDING trips</h1>
         <% if(trips.length === 0) {%>
             <h2>There are no trips in the database!</h2>
@@ -20,8 +23,10 @@
             <% }) %>
         </ul>
         <% } %>
-        <a href="/users"><button href="/users" class="login-button">Login</button></a>
-        <a href="/users/new"><button href=class="create-user-button">Create a new user</button></a>
+        <%if(!isLoggedIn){%>
+            <a href="/users"><button href="/users" class="login-button">Login</button></a>
+            <a href="/users/new"><button href=class="create-user-button">Create a new user</button></a>
+        <%}%>
         <script src="" async defer></script>
     </body>
 </html>

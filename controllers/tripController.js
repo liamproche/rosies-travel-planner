@@ -4,15 +4,20 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const Trip = require('../models/trip');
 
+
 // ROUTES
 // TRIP INDEX PAGE [1/7]
 //     -World map showing user destinations
 router.get('/', async (req, res) => {
     const trips = await Trip.find();
+    const userId = (req.session.userId)
     res.render('../views/trips/index.ejs', {
-        trips: trips
+        isLoggedIn: req.session.isLoggedIn,
+        trips: trips,
+        userId: userId
     })
 })
+
 
 // TRIP SHOW FORM TO CREATE [2/7]
 //     -Renders form to create trip
@@ -57,7 +62,6 @@ router.post('/:id/:UserID', async (req, res) => {
 })
 
 
-
 // TRIP SHOW PAGE [4/7]
 //     -Lists price of current trip
 //     -Possible addition of more information
@@ -73,12 +77,10 @@ router.get('/:id', async (req, res) => {
         // console.log(`req.session.userId: ${req.session.userId}`)
         let tripOwner = trip.user+""
         let currUser = req.session.userId + ""
-        
         console.log(`match:${tripOwner===currUser}`)
         // console.log(`trip.user typeof? ${typeof(trip.user._id)}`)
         // console.log(`req.session.userId typeof? ${typeof(req.session.userId)}`)
         // if (res.locals.userId == trip.user ) --> not sure if user would just give you the id, that's something you would want to console log so you can see that actual obj in your terminal and if it doesn't if you the id then you could use .populate
-
             res.render("../views/trips/show.ejs", {
                 trip: trip,
                 tripOwner : tripOwner,
@@ -90,7 +92,6 @@ router.get('/:id', async (req, res) => {
         console.log("not logged in")
     }
 })
-
 
 
 // TRIP SHOW FORM TO EDIT PAGE [5/7]
@@ -111,12 +112,27 @@ router.get('/:id/edit', async (req, res) => {
 // TRIP EDIT ROUTE [6/7]
 //     -Edits the trip, dates, layovers
 router.put('/:id', async (req, res) => {
-    try {
+    try {   
+        //UPDATES TRIP IN DB
         await Trip.findByIdAndUpdate(req.params.id, req.body)
+        //FINDS UPDATED TRIP IN DB
+        const trip = await Trip.findById(req.params.id)
+        //FINDS USER OF TRIP
+        const user = await User.findById(req.session.userId)
+        //GOES THROUGH TRIPS ARR IN USER MODEL
+        for(let i = 0; i < user.trips.length; i++){
+            //IF REQUEST ID MATCHES THE TRIP ID
+            if(req.params.id == trip._id){
+                //SPLICE THE USER ARRAY WITH THE TRIP 
+                user.trips.splice(i, 1, trip)
+                //SAVE THE NEW USER IN THE DB
+                user.save();
+            }
+        }  
+        //SEND THEM BACK TO THE SHOW PAGE (OR MY TRIPS PAGE???)
         res.redirect(`/trips/${req.params.id}`)
-        console.log("editing trip")
     } catch (err) {
-        console.log("There was an error editing this trip")
+        console.log(err)
         res.sendStatus(500)
     }
 })
@@ -127,27 +143,24 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     //TRY BLOCK FOR DB QUERY
     try {
-        //remove from user's trips array
+        //QUERIES THE DB TO FIND THE TRIP
         const trip = await Trip.findById(req.params.id)
+        //QUERIES THE DB TO FIND THE USER
         const user = await User.findById(trip.user)
-        console.log(`trying to delete ${trip.destinationCity} from ${user.username}`)
-        console.log("\nprior:[")
-        for(tripz of user.trip){
-            console.log(tripz)
+        
+        
+        //LOOPS THROUGH ARRAY OF TRIPS STORED IN USER MODEL
+        for (let i = 0; i < user.trips.length; i++){
+            //STRING CONVERSION TO MATCH IDs
+            if(String(user.trips[i]._id) === String(trip._id)){
+                //SPLICE THAT ARRAY!!!!
+                user.trips.splice(i, 1)
+                user.save()
+            }
         }
-        for(let i = 0; i < user.trips.length; i++){
-            if(user.trips[i]._id === trip._id)
-            user.trips.splice(i,1)
-        }
-        console.log("]\npost: [")
-        for(tripz of user.trip){
-            console.log(tripz)
-        }
-        console.log("]")
-        //QUERIES DB TO FIND SPECIFIC USER AND DELETES THEM
+        //DELETES TRIP FROM DB
         await Trip.findByIdAndDelete(req.params.id)
-        //SENDS USER TO LOGIN PAGE?
-        //NOT SURE WHRERE TO REDIRECT AFTER A TRIP DELETE
+        //SENDS USER TO USER SHOW PAGE
         res.redirect(`/users/${user._id}`)
         //DB FUCK-UPS
     } catch (err) {
