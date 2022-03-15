@@ -9,10 +9,11 @@
 <body>
     <h1><%= trip.destinationCity %></h1>
     <h1><%= trip.destinationCountry %></h1>
-    
-    <a href="/trips/<%=trip._id%>/edit"><button>Edit</button></a>
-    <form action="/trips/<%= trip._id %>?_method=DELETE" method="post">
-        <button type="submit">Delete <%= trip.destinationCity%>?</button>
-    </form>
+    <%if(tripOwner === currUser){%>
+        <a href="/trips/<%=trip._id%>/edit"><button class="edit-trip-button">Edit</button></a>
+        <form action="/trips/<%= trip._id %>?_method=DELETE" method="post">
+            <button type="submit">Delete <%= trip.destinationCity%>?</button>
+        </form>
+    <%}%>
 </body>
 </html>

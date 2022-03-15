@@ -3,10 +3,11 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const Trip = require('../models/trip');
+const isLoggedIn = ('../middleware/isLoggedIn')
 
 
 //SHOW USER LOGIN FORM ROUTE(GET)
-router.get('/', async (req, res)=>{
+router.get('/', async (req, res) => {
     // NOTE- COMMENT IN BELOW TO RENDER LOGIN FORM
     res.render('users/login.ejs', {
     })
@@ -15,14 +16,14 @@ router.get('/', async (req, res)=>{
 
 
 //LOG USER IN ROUTE(POST)
-router.post("/login", async (req, res)=>{
-    try{
+router.post("/login", async (req, res) => {
+    try {
         //GRABS USERNAME FROM THE BODY OF THE FORM AND QUERIES THE DATABASE
-        const possibleUser = await User.findOne({username: req.body.username})
-        if(possibleUser){
+        const possibleUser = await User.findOne({ username: req.body.username })
+        if (possibleUser) {
             //IF IT FINDS A USER
             //COMPARES ENCRYPTED PASSWORDS LOOKING FOR A MATCH
-            if(bcrypt.compareSync(req.body.password, possibleUser.password)){
+            if (bcrypt.compareSync(req.body.password, possibleUser.password)) {
                 //IF PASSWORDS MATCH USER IS LOGGED IN
                 req.session.isLoggedIn = true;
                 console.log(possibleUser)
@@ -31,17 +32,17 @@ router.post("/login", async (req, res)=>{
                 //REDIRECTS LOGGED-IN USER TO USER SHOW PAGE
                 res.redirect(`/users/${possibleUser._id}`)
                 console.log("user is logged in")
-            }else{
+            } else {
                 //IF PASSWORDS DONT MATCH REDERICT TO LOG-IN PAGE
                 res.redirect("/users")
             }
-        }else{
+        } else {
             //IF USERNAME DOESNT EXIST IN DB REDIRECT TO LOGIN PAGE
             res.redirect("/users")
             //not working
         }
-    //DB FUCK-UPS
-    }catch(err){
+        //DB FUCK-UPS
+    } catch (err) {
         console.log(err);
         res.send(500)
     }
@@ -49,7 +50,7 @@ router.post("/login", async (req, res)=>{
 
 
 //CREATE A NEW USER ROUTE(POST)
-router.post('/new', async (req, res)=>{
+router.post('/new', async (req, res) => {
     //CHECKS THAT INFORMATION WAS ADDED INTO THE FORM
     console.log(req.body)
     //CREATES AND STORES ENCRYPTED PASSWORD
@@ -60,14 +61,14 @@ router.post('/new', async (req, res)=>{
     req.body.password = hashedPassword
     //CREATES USER IN DB
     //TRY CATCH BLOCK IN CASE CREATE USER FAILS VALIDATION
-    try{
+    try {
         const newUser = await User.create(req.body);
         //TO ENSURE NEW USER WAS CREATED
         console.log(newUser)
         //SENDS USER TO USER SHOW PAGE
         res.redirect(`/users`)
-    //NOTE-NEEDS ELABORATION WHY DID VALIDATION FAIL, RETURN SPECIFIC MESSAGE TO USER REROUTE USER TO CREATE USER PAGE??
-    }catch(err){
+        //NOTE-NEEDS ELABORATION WHY DID VALIDATION FAIL, RETURN SPECIFIC MESSAGE TO USER REROUTE USER TO CREATE USER PAGE??
+    } catch (err) {
         console.log(err)
         res.send('Failed User Validation')
     }
@@ -75,19 +76,17 @@ router.post('/new', async (req, res)=>{
 
 
 //SHOW FORM TO CREATE NEW USER ROUTE(GET)
-router.get('/new', (req, res)=>{
+router.get('/new', (req, res) => {
     res.render('../views/users/new.ejs')
 })
 
 
 //SHOW FORM TO EDIT USER ROUTE(GET)
-router.get('/:id/edit', async (req, res)=>{
+router.get('/:id/edit', async (req, res) => {
     //SINCE IT QUERIES THE DATABASE
-    try{
-        console.log(req.session.userId)
-        console.log(req.params.id)
+    try {
         //MAKES SURE LOGGED IN USER MATCHES USER IN DATABASE (LOOSE EQUALITY- TYPE ERROR WITH STRICT)
-        if(req.session.userId == req.params.id){
+        if (req.session.userId == req.params.id) {
             //QUERIES THE DATABASE
             const user = await User.findById(req.params.id)
             console.log("checking the db")
@@ -97,35 +96,35 @@ router.get('/:id/edit', async (req, res)=>{
             })
         }
         //IF USER IS NOT LOGGED IN AS USER REQUESTED TO EDIT
-        else{    
+        else {
             throw new Error("You're NOT THAT USER!")
         }
-    //DB FUCK-UPS
-    }catch(err){
+        //DB FUCK-UPS
+    } catch (err) {
         res.sendStatus(500)
     }
 })
 
 
 //EDIT USER ROUTE(PUT)
-router.put('/:id', async (req, res)=>{
+router.put('/:id', async (req, res) => {
     //TRY BLOCK FOR DB QUERY
-    try{
+    try {
         //QUERIES DB AND UPDATES ENTRY AS PER FORM BODY 
         await User.findByIdAndUpdate(req.params.id, req.body)
         //REDIRECTS USER TO THEIR SPECIFIC SHOW PAGE 
         res.redirect(`/users/${req.params.id}`)
-    //DB FUCK-UPS
-    }catch(err){
-         res.sendStatus(500)
+        //DB FUCK-UPS
+    } catch (err) {
+        res.sendStatus(500)
     }
 })
 
 
 //LOGOUT ROUTE(GET)
-router.get('/logout', (req, res)=>{
+router.get('/logout', (req, res) => {
     //KILLS THE SESSION
-    req.session.destroy(()=>{
+    req.session.destroy(() => {
         //REDIRECTS TO LOGIN PAGE
         res.redirect("/users")
     })
@@ -133,33 +132,33 @@ router.get('/logout', (req, res)=>{
 
 
 //SHOW ROUTE
-router.get('/:id', async (req, res)=>{
+router.get('/:id', async (req, res) => {
     //TRY BLOCK FOR DB QUERY
-    try{
+    try {
         //QUERIES DB TO FIND SPECIFIC USER BY ID
         const user = await User.findById(req.params.id)
+
         // const userTrips = await Trip.find(user)
         res.render("users/show.ejs", {
             user: user,
             // trips: userTrips
         })
-    //DB FUCK-UPS
-    }catch(err){
+        //DB FUCK-UPS
+    } catch (err) {
         res.sendStatus(500)
     }
 })
 
-
 //DELETE ROUTE
-router.delete('/:id', async (req, res)=>{
+router.delete('/:id', async (req, res) => {
     //TRY BLOCK FOR DB QUERY
-    try{
+    try {
         //QUERIES DB TO FIND SPECIFIC USER AND DELETES THEM
         await User.findByIdAndDelete(req.params.id)
         //SENDS USER TO LOGIN PAGE?
         res.redirect('/users')
-    //DB FUCK-UPS
-    }catch(err){
+        //DB FUCK-UPS
+    } catch (err) {
         res.sendStatus(500)
     }
 })
