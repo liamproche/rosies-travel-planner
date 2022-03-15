@@ -155,7 +155,7 @@ MVP CHECK
     #-Your non-user model is connected to the user that created it
     #-A git repository not inside the class repo
     -At least 1 GitHub commit & push per day
-    -Be deployed online and accessible to the public via Heroku
+    #-Be deployed online and accessible to the public via Heroku
     -A README.md file with a link to your hosted app, explanations of the technologies used, the approach was taken, unsolved problems, user stories, and notes to yourself so you can come back to your project later in the course and be able to pick up your train of thought, etc
 
 
