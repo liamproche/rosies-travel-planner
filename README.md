@@ -244,11 +244,11 @@ Overall goal:
 
 Steps:
     Trending algorithm
-    -Determine which 5 trips have the highest amount of clicks
-        -Include a hit-count saved within the trip schema
-        -Increment the hit count every time the trip is clicked (show page activated)
-        -Loop through all trips in the db comparing hit counts
-        -Print the 5 trips with the highest hit count on trip index page
+    #-Determine which 3 trips have the highest amount of clicks
+        #-Include a hit-count saved within the trip schema
+        #-Increment the hit count every time the trip is clicked (show page activated)
+        #-Loop through all trips in the db comparing hit counts
+        #-Print the 3 trips with the highest hit count on trip index page
 
 
 

@@ -42,17 +42,19 @@ async function findTrendingTrips(){
 // TRIP INDEX PAGE [1/7]
 //     -World map showing user destinations
 router.get('/', async (req, res) => {
-    const trips = await findTrendingTrips();
+    const trips = await Trip.find();
+    const trendingTrips = await findTrendingTrips();
     const userId = (req.session.userId)
     res.render('../views/trips/index.ejs', {
         isLoggedIn: req.session.isLoggedIn,
         trips: trips,
-        userId: userId
+        userId: userId,
+        trendingTrips: trendingTrips
     })
 })
 
-//TEMP GOOGLE MAP ROUTE
 
+//TEMP GOOGLE MAP ROUTE
 router.get('/googlemaps', async (req, res) => {
     const trips = await Trip.find();
     const userId = (req.session.userId)

@@ -29,6 +29,15 @@
           zoom: 8
         });
       }
+    
+    // BEGIN NEW CODE
+    new google.maps.Marker({
+      position: {lat: 29.603139137482135, lng: -95.24801133125895},
+      map,
+      title: "Hello World!",
+  });
+  // END NEW CODE
+    
     </script>
     <script src='https://maps.googleapis.com/maps/api/js?key<%=process.env.GOOGLE_API_KEY%>&callback=initMap'
     async defer></script>
