@@ -5,21 +5,56 @@ const bcrypt = require('bcryptjs');
 const Trip = require('../models/trip');
 
 
+//TRENDING FUNCTION - CALLED IN TRIP INDEX ROUTE TO POPULATE PAGE WITH TRENDING TRIPS
+//3 TRENDING MAX NUMER
+async function findTrendingTrips(){
+    const trendingTripArr = []
+    const trips = await Trip.find()
+    let highestHitTrip = trips[0]
+    let secondHighestTrip = trips[0]
+    let thirdHighest = trips[0]
+    for(let i = 0; i < trips.length; i++){
+        let trip = trips[i]
+        if(trip.hitcount > highestHitTrip.hitcount){
+            highestHitTrip = trip
+        }
+    }
+    trendingTripArr.push(highestHitTrip)
+    for(let i = 0; i < trips.length; i++){
+        let trip = trips[i]
+        if(trip.hitcount > secondHighestTrip.hitcount && trip._id !== highestHitTrip._id){
+            secondHighestTrip = trip
+        }
+    }
+    trendingTripArr.push(secondHighestTrip)
+    for(let i = 0; i < trips.length; i++){
+        let trip = trips[i]
+        if(trip.hitcount > thirdHighest.hitcount && trip._id !== highestHitTrip._id && trip._id !== secondHighestTrip._id){
+            thirdHighest = trip
+        }
+    }
+    trendingTripArr.push(thirdHighest)
+    return(trendingTripArr)
+}
+
+
 // ROUTES
 // TRIP INDEX PAGE [1/7]
 //     -World map showing user destinations
 router.get('/', async (req, res) => {
     const trips = await Trip.find();
+    const trendingTrips = await findTrendingTrips();
     const userId = (req.session.userId)
     res.render('../views/trips/index.ejs', {
         isLoggedIn: req.session.isLoggedIn,
         trips: trips,
-        userId: userId
+        userId: userId,
+        trendingTrips: trendingTrips
     })
 })
 
-//TEMP GOOGLE MAP ROUTE
 
+//TEMP GOOGLE MAP ROUTE
 router.get('/googlemaps', async (req, res) => {
     const trips = await Trip.find();
     const userId = (req.session.userId)
@@ -53,8 +88,6 @@ router.post('/:id/:UserID', async (req, res) => {
         req.body.user = res.locals.userId
         //QUERIES DB TO FIND SPECIFIC USER BY ID
         const trip = await Trip.create(req.body);
-        // console.log(`req.session.UserID: ${req.session.userId}`)
-
         // you technically don't need to do a query find on the user becuase `res.locals` is the current user
         const user = await User.findById(req.session.userId)
         // req.body.user = user
@@ -76,19 +109,17 @@ router.post('/:id/:UserID', async (req, res) => {
 //     -Possible addition of more information
 router.get('/:id', async (req, res) => {
     const trip = await Trip.findById(req.params.id) // now you can well actually you would still have the user id without .populate but you didn't have it before because you weren't adding it when you posted a trip
+    //THIS WILL INCREMENT THE HITCOUNT STORED IN THE TRIP MODEL WHETHER USER WHO CLICKS IS LOGGED IN OR NOT
+    trip.hitcount++
+    trip.save()
+    console.log(trip.hitcount)
     if (req.session.isLoggedIn) {
-        // const tripCreator = trip.user
-        // console.log(`Current user: ${currentUser.username}`)
-        // console.log(`The owner of the trip should be: ${tripCreator}`)
+
         console.log("logged in")
-        // console.log("this is trip\n", trip)
-        // console.log(`trip.user: ${trip.user}`)
-        // console.log(`req.session.userId: ${req.session.userId}`)
+
         let tripOwner = trip.user+""
         let currUser = req.session.userId + ""
         console.log(`match:${tripOwner===currUser}`)
-        // console.log(`trip.user typeof? ${typeof(trip.user._id)}`)
-        // console.log(`req.session.userId typeof? ${typeof(req.session.userId)}`)
         // if (res.locals.userId == trip.user ) --> not sure if user would just give you the id, that's something you would want to console log so you can see that actual obj in your terminal and if it doesn't if you the id then you could use .populate
             res.render("../views/trips/show.ejs", {
                 trip: trip,

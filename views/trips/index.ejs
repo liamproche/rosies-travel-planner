@@ -7,14 +7,21 @@
         <nav>
             <%-include ('../partials/nav.ejs')%>
         </nav>
-        <h1> TRENDING trips</h1>
+        <h1>Trips created by users</h1>
         <%if(trips.length === 0){%>
             <h2>There are no trips in the database!</h2>
         <%}else{%>
-            <ul class="trips">
-            <% trips.forEach((trip)=>{ %>
+            <h2>Trending Trips</h2>
+            <ul class="trending-trips">
+                <%trendingTrips.forEach((trip)=>{%>
                     <li><a href="/trips/<%=trip._id%>"><%=trip.destinationCity%>, <%=trip.destinationCountry%></a></li>
-            <% }) %>
+                <%})%>
+            </ul>
+            <h2>All Trips</h2>
+            <ul class="trips">
+            <%trips.forEach((trip)=>{%>
+                    <li><a href="/trips/<%=trip._id%>"><%=trip.destinationCity%>, <%=trip.destinationCountry%></a></li>
+            <%})%>
         </ul>
         <%}%>
         <script src="" async defer></script>
