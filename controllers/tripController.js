@@ -5,11 +5,44 @@ const bcrypt = require('bcryptjs');
 const Trip = require('../models/trip');
 
 
+//TRENDING FUNCTION - CALLED IN TRIP INDEX ROUTE TO POPULATE PAGE WITH TRENDING TRIPS
+//3 TRENDING MAX NUMER
+async function findTrendingTrips(){
+    const trendingTripArr = []
+    const trips = await Trip.find()
+    let highestHitTrip = trips[0]
+    let secondHighestTrip = trips[0]
+    let thirdHighest = trips[0]
+    for(let i = 0; i < trips.length; i++){
+        let trip = trips[i]
+        if(trip.hitcount > highestHitTrip.hitcount){
+            highestHitTrip = trip
+        }
+    }
+    trendingTripArr.push(highestHitTrip)
+    for(let i = 0; i < trips.length; i++){
+        let trip = trips[i]
+        if(trip.hitcount > secondHighestTrip.hitcount && trip._id !== highestHitTrip._id){
+            secondHighestTrip = trip
+        }
+    }
+    trendingTripArr.push(secondHighestTrip)
+    for(let i = 0; i < trips.length; i++){
+        let trip = trips[i]
+        if(trip.hitcount > thirdHighest.hitcount && trip._id !== highestHitTrip._id && trip._id !== secondHighestTrip._id){
+            thirdHighest = trip
+        }
+    }
+    trendingTripArr.push(thirdHighest)
+    return(trendingTripArr)
+}
+
+
 // ROUTES
 // TRIP INDEX PAGE [1/7]
 //     -World map showing user destinations
 router.get('/', async (req, res) => {
-    const trips = await Trip.find();
+    const trips = await findTrendingTrips();
     const userId = (req.session.userId)
     res.render('../views/trips/index.ejs', {
         isLoggedIn: req.session.isLoggedIn,
@@ -53,8 +86,6 @@ router.post('/:id/:UserID', async (req, res) => {
         req.body.user = res.locals.userId
         //QUERIES DB TO FIND SPECIFIC USER BY ID
         const trip = await Trip.create(req.body);
-        // console.log(`req.session.UserID: ${req.session.userId}`)
-
         // you technically don't need to do a query find on the user becuase `res.locals` is the current user
         const user = await User.findById(req.session.userId)
         // req.body.user = user
@@ -76,6 +107,7 @@ router.post('/:id/:UserID', async (req, res) => {
 //     -Possible addition of more information
 router.get('/:id', async (req, res) => {
     const trip = await Trip.findById(req.params.id) // now you can well actually you would still have the user id without .populate but you didn't have it before because you weren't adding it when you posted a trip
+    //THIS WILL INCREMENT THE HITCOUNT STORED IN THE TRIP MODEL WHETHER USER WHO CLICKS IS LOGGED IN OR NOT
     trip.hitcount++
     trip.save()
     console.log(trip.hitcount)
