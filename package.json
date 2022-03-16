@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "axios": "^0.26.1",
     "bcryptjs": "^2.4.3",
     "connect-mongodb-session": "^3.1.1",
     "dotenv": "^16.0.0",
@@ -13,7 +14,6 @@
   "description": "APP DESCRIPTION",
   "version": "1.0.0",
   "main": "app.js",
-  "devDependencies": {},
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"

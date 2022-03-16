@@ -1,49 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Simple Map</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 29.603139137482135, lng: -95.24801133125895},
-          //29.603139137482135, -95.24801133125895
-          zoom: 8
-        });
-      }
-    
-    // BEGIN NEW CODE
-    new google.maps.Marker({
-      position: {lat: 29.603139137482135, lng: -95.24801133125895},
-      map,
-      title: "Hello World!",
+    <%-include ('../partials/head.ejs')%>
+</head>
+<h1>Testing</h1>
+<main>
+  <script>
+    function initMap() {
+  // Create the map.
+  const pyrmont = { lat: -33.866, lng: 151.196 };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: pyrmont,
+    zoom: 17,
+    mapId: "8d193001f940fde3",
   });
-  // END NEW CODE
-    
-    </script>
-    <script src='https://maps.googleapis.com/maps/api/js?key<%=process.env.GOOGLE_API_KEY%>&callback=initMap'
-    async defer></script>
-  </body>
-</html>
+  // Create the places service.
+  const service = new google.maps.places.PlacesService(map);
+  let getNextPage;
+  const moreButton = document.getElementById("more");
 
-<!-- </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=process.env.GOOGLE_API_KEY&callback=initMap"
-    async defer></script> -->
+  moreButton.onclick = function () {
+    moreButton.disabled = true;
+    if (getNextPage) {
+      getNextPage();
+    }
+  };
+
+  // Perform a nearby search.
+  service.nearbySearch(
+    { location: pyrmont, radius: 500, type: "store" },
+    (results, status, pagination) => {
+      if (status !== "OK" || !results) return;
+
+      addPlaces(results, map);
+      moreButton.disabled = !pagination || !pagination.hasNextPage;
+      if (pagination && pagination.hasNextPage) {
+        getNextPage = () => {
+          // Note: nextPage will call the same handler function as the initial call
+          pagination.nextPage();
+        };
+      }
+    }
+  );
+}
+
+function addPlaces(places, map) {
+  const placesList = document.getElementById("places");
+
+  for (const place of places) {
+    if (place.geometry && place.geometry.location) {
+      const image = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25),
+      };
+
+      new google.maps.Marker({
+        map,
+        icon: image,
+        title: place.name,
+        position: place.geometry.location,
+      });
+
+      const li = document.createElement("li");
+
+      li.textContent = place.name;
+      placesList.appendChild(li);
+      li.addEventListener("click", () => {
+        map.setCenter(place.geometry.location);
+      });
+    }
+  }
+}
+</script>
+
+<body onload="drawMap()">
+<script>
+async function drawMap(){
+  try{  
+    await initialize()
+    codeAddress();
+  }catch{setTimeout(codeAddress, 50)}
+}
+</script>
+
+<div id="map" style="width: 320px; height: 480px;"></div>
+</main>  
+</html>

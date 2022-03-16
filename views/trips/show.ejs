@@ -7,13 +7,64 @@
     <nav>
         <%-include ('../partials/nav.ejs')%>
     </nav>
-    <h1><%= trip.destinationCity %></h1>
+    <h1 id="address"><%= trip.destinationCity %></h1>
     <h1><%= trip.destinationCountry %></h1>
     <%if(tripOwner === currUser){%>
         <a href="/trips/<%=trip._id%>/edit"><button class="edit-trip-button">Edit</button></a>
         <form action="/trips/<%= trip._id %>?_method=DELETE" method="post">
             <button type="submit">Delete <%= trip.destinationCity%>?</button>
         </form>
+    <%}else{%>
+        <h6>Trip created by: <%=tripOwnerName%></h6>
     <%}%>
 </body>
-</html>
+
+
+    
+    <script>
+        //reads h1 which is destionationCity and saves address now just need fuction to run with clicking "pin" button
+        var geocoder = new google.maps.Geocoder();
+        var map;
+        async function initialize() {
+            var latlng = await new google.maps.LatLng(-34.397, 150.644);
+            var mapOptions = {
+                zoom: 8,
+                center: latlng
+            }
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        }   
+
+        function codeAddress() {
+            var address = document.getElementById('address').innerText;
+            console.log(`addy: ${address}`)
+            geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == 'OK') {
+                console.log(`status is okay: ${address}`)
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+            });
+        }
+
+    </script>
+
+<body onload="drawMap()">
+<script>
+    async function drawMap(){
+      try{  
+        await initialize()
+        codeAddress();
+      }catch{setTimeout(codeAddress, 50)}
+    }
+</script>
+
+    <div id="map" style="width: 320px; height: 480px;"></div>
+     <div>
+       <!-- <input type="button" value="Show on Map" onclick="codeAddress()"> -->
+     </div>
+   </body>
