@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const tripSchema = new Schema({
     destinationCity: {type:String, required: true},
     destinationCountry: {type:String, required: true},
-    
+    hitcount: {type:Number, default:0},
     //NOTE- TO BE ADDED AFTER MVP
     // price: {type:Number, required:true},
     
