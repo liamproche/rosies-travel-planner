@@ -108,7 +108,7 @@ router.post('/:id/:UserID', async (req, res) => {
 //     -Lists price of current trip
 //     -Possible addition of more information
 router.get('/:id', async (req, res) => {
-    const trip = await Trip.findById(req.params.id) // now you can well actually you would still have the user id without .populate but you didn't have it before because you weren't adding it when you posted a trip
+    const trip = await Trip.findById(req.params.id).populate('user') // now you can well actually you would still have the user id without .populate but you didn't have it before because you weren't adding it when you posted a trip
     //THIS WILL INCREMENT THE HITCOUNT STORED IN THE TRIP MODEL WHETHER USER WHO CLICKS IS LOGGED IN OR NOT
     trip.hitcount++
     trip.save()
@@ -117,14 +117,16 @@ router.get('/:id', async (req, res) => {
 
         console.log("logged in")
 
-        let tripOwner = trip.user+""
+        let tripOwner = trip.user._id + ""
         let currUser = req.session.userId + ""
-        console.log(`match:${tripOwner===currUser}`)
+        let tripOwnerName = trip.user.username
+        // console.log(`key :${user.keys}`)
         // if (res.locals.userId == trip.user ) --> not sure if user would just give you the id, that's something you would want to console log so you can see that actual obj in your terminal and if it doesn't if you the id then you could use .populate
             res.render("../views/trips/show.ejs", {
                 trip: trip,
-                tripOwner : tripOwner,
-                currUser :currUser
+                tripOwner: tripOwner,
+                currUser :currUser,
+                tripOwnerName :tripOwnerName
             })
     } 
     else {

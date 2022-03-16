@@ -2,4 +2,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NAME OF OUR APP GOES HERE</title>
-<link href="../../public/css/style.css">
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.GOOGLE_API_KEY%>&libraries=places"></script>
+<link rel="stylesheet" href="/css/style.css">
+<script>
+    function initialize() {
+      var input = document.getElementById('searchTextField');
+      var autocomplete = new google.maps.places.Autocomplete(input);
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+            document.getElementById('city2').value = place.name;
+            document.getElementById('cityLat').value = place.geometry.location.lat();
+            document.getElementById('cityLng').value = place.geometry.location.lng();
+        });
+    }
+</script>

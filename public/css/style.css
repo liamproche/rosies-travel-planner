@@ -1,0 +1,41 @@
+/* BEGIN TEXT */
+*{
+    font-family: sans-serif
+}
+
+
+/* END TEXT */
+
+
+
+
+
+/* FOR LAYOUT PURPOSES */
+/* *{
+    margin: 0;
+    padding: 0;
+} */
+body{
+    border: 2px solid blue
+}
+div{
+    border: 2px solid green;
+}
+main{
+    border: 2px solid red;
+}
+/* END FOR LAYOUT PURPOSES */
+
+
+/* BEGIN SIDE NAV */
+.nav{
+    list-style-type: none;
+
+}
+
+/* END SIDE NAV */
+
+#map{
+    height: 50vh;
+
+}

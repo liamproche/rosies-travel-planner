@@ -13,11 +13,11 @@
         <!-- FUNCTION TO ADD TRIPS TO PAGE FOR SPECIFIC USER -->
         <%}else{%>
             <h2>Hello, <%=user.name%>.</h2>
-            <h2>What dates would you like to travel?</h2>
+            <!-- <h2>What dates would you like to travel?</h2>
             <p>Departure Date:</p><input type="date" name="departureDate">
-            <p>Return Date</p><input type="date" name="returnDate">
-            <input type="submit">
-            <h2>Your trips:</h2>
+            <p>Return Date</p><input type="date" name="returnDate"> -->
+            <!-- <input type="submit"> -->
+            <h2>Here are your trips:</h2>
             <ul class="trips">
                 <%user.trips.forEach((trip)=>{%>
                         <!-- LISTS USERS TRIPS BY CITY ONLY HREF TIED TO TRIP SHOW ROUTE -->

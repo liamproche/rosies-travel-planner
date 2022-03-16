@@ -30,6 +30,11 @@ app.use(session({
 }))
 
 
+//REF STATIC FILES
+app.use(express.static('public'));
+
+
+
 //SENDS SESSION INFO TO TEMPLATES
 app.use(async (req, res, next) => {
     // This will send info from session to templates
