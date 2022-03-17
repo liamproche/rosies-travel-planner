@@ -7,22 +7,9 @@ This travel planning app will allow users to save their bucket-list destinations
 
 MODELS
 
-#USER
-    #-username
-    #-display name? Want to see "Steven Luu" not "stevenluu566" [does not have to be unique]
-    #-password (curently a string min-length:8 maxlength:20) 
-    #-Starting Location
-    #-Date of departure- Needs to be stored in user model???
-    #-Date of return (may not be a thing)- Needs to be stored in user model???
-    #-Timestamp
-
 #TRIP
-    #-Destination
-    #-Flight Price
-    #-Timestamp
     -Additional Content:
     -resturants [or an API with local bars, must-gos, resturants]
-
 
 
 USER STORY
@@ -37,105 +24,56 @@ USER STORY
 
 ROUTES
 #TRIP INDEX PAGE [1/7]
-    #-World map 
-    -show user destinations
+    - World map shows user destinations
 
 #TRIP SHOW FORM TO CREATE [2/7]
-    #-Renders form to create trip
 
 #TRIP CREATE ROUTE(POST) [3/7]
-    #-Create the actual trip  
-    #-Redirects to user show page  
-
+ 
 #TRIP SHOW PAGE [4/7]
-    #-The show page of a specific trip
     -Lists price of current trip
     -Possible addition of more information
-    #-Links to login or create new user
 
 #TRIP SHOW FORM TO EDIT PAGE [5/7]
-    #-Show form to edit trip
 
-TRIP EDIT ROUTE [6/7]
-    -Edits the trip, dates, layovers
+#TRIP EDIT ROUTE [6/7]
 
 #TRIP DELETE ROUTE [7/7]
-    #-Deletes the trip
 
 #USER INDEX ROUTE [1/7]
-    #-Show form to login in
 
 #USER SHOW FORM TO CREATE NEW USER ROUTE [2/7]
-    #-Renders form to create new user
-    #-Redirect to user show page
 
 #USER CREATE ROUTE(POST) [3/7]
-    #-Creates the user
-    #-Routes to their user show page
 
 #USER SHOW PAGE [4/7]
-    #-Lists all trips from user  <--Needs testing after trips added
     -Lists prices of all trips from user <--Stretch goal
-    #-Has option to create new trip
-    -Has option to delete a trip <--Add after trips routes created
-    -Has option to edit a trip <--Add after trips routes created
-    #-Has logout option
-    #-Has option to edit a user
 
 #USER SHOW FORM TO EDIT PAGE [5/7]
-    #-Show form to edit user
 
 #USER EDIT ROUTE [6/7]
-    #-Edits the user
 
 #USER DELETE ROUTE [7/7]
-    #-Deletes the User
 
 EJS TEMPLATES
     USERS
         #CREATE USER FORM
-            #-Field for username
-            #-Field for Name (display)
-            #-Field for password
             -Field to confirm password?
-            #-Field for departure city
-            #-POSTS Create user on submit
         
         #LOGIN-FORM
-            #-Field for username(required)
-            #-Field for password(required)
-            #-Button to new user show form
-            #-POSTS to users/login page to login
 
         #EDIT FORM
-            -Field to change username?
-            #-Field to change display name
-            #-Field to change password <--Tricky... Will require middle-ware with bcrypt
             -Field to confirm password change?
-            #-Field to change departure city
-            #-Field to change depature date <--Still not sure this should be included in user data, maybe trip?
-            #-Field to change return date <-- ""
-            #-Button to delete user
+    
     
     TRIPS
         #TRIPS INDEX PAGE
-            #-Shows all trips created by every user
-            #-Log-in Button
-            #-Create new user button
         
         TRIPS SHOW PAGE
-            #-Shows all information about a trip created by any user
-            #-Button back to trips index page
         
         #EDIT FORM
-            #-Field to edit destination city
-            #-Field to edit destination country
-            #-Submit button
-        
+
         #CREATE TRIP FORM
-            #-Field for destination country
-            #-Field for destination city
-            #-Submit form button
 
 
 TASK ASSIGNMENT
@@ -159,26 +97,16 @@ MVP CHECK
 
 KNOWN ISSUES
     #-Edit and delete does not update user trip array
-    -Nav sometimes on user show page
+    -Nav sometimes on user show page <--- Can't figure out where this happens
     -Nav shows link to page user is already on
-    -Dates not submitting 
     -Message to users when creating fails validation?
     -Messages to users if they pick a duplicate user name?
 
 
 TO DO?
-    #-Figure out error on delete route
-    #-Only user that created trip should be able to edit/delete trip?
-    #-Move dates out of User and into user show page
-    #-Partials? (Nav)?
-    #-Server deployment?
-    #-Google map API
     -Meet to discuss and wireframe Front-end
-    -Google places API
-    #-Nav changes from log-in/create account to actual nav?
-    -Gray out calendar days that have passed
+    -Google places API?
     -State/region field on trips?
-    -Password security measures?
   
     
 STRETCH GOALS
@@ -196,8 +124,7 @@ FUNCTION NEEDS
                 -searches multiple flight companies
                 -https://rapidapi.com/obryan-software-obryan-software-default/api/compare-flight-prices/pricing
 
-    -GoogleMaps API???
-    -log in redirect opens in new tab
+    -log in redirect opens in new tab <-- or modal?
 
 
 POSSIBLE THINGS TO ADD TO TRIP MODEL
@@ -209,6 +136,7 @@ ADDITIONAL STRETCH GOALS
     -Social Media integration [shows trending destinations and/or friends saved destinations]
     -Allow users to sign-in through google
     -like feature to know what is trending
+    -allow users to add trip other created to their page
 
 
 SOCIAL MEDIA INTEGRATION IDEAS (Stretch goal)
@@ -220,8 +148,6 @@ SOCIAL MEDIA INTEGRATION IDEAS (Stretch goal)
 NOTES
 *Flight rater API- budgets out which of your trips and what the overall cost of each trip will be
 Early afternoon- 2pm daily check-ins
-
-
 
 
 NIX FOR NOW!!!!!!
@@ -245,22 +171,7 @@ Overall goal:
     #-Take the 3 trips with the highest number of clicks and display their locations on a map generated by a google maps API call.
     #-Drop down auto-fill for city and country
 
-Steps:
-    Trending algorithm
-    #-Determine which 3 trips have the highest amount of clicks
-        #-Include a hit-count saved within the trip schema
-        #-Increment the hit count every time the trip is clicked (show page activated)
-        #-Loop through all trips in the db comparing hit counts
-        #-Print the 3 trips with the highest hit count on trip index page
-    #-Google API call top map cities 
-
-
 
 
 LINK TO DEPLOYED APP:
 https://rosies-travel-tracker-app.herokuapp.com/
-
-        
-
-
-
