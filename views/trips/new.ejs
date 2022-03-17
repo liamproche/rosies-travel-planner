@@ -12,7 +12,7 @@
             google.maps.event.addDomListener(window, 'load', initialize);
         </script>
         <form action="/trips/new/<%=user._id%>" method="POST">
-            <input id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />  
+            <input id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" name="destinationCity"/>  
             <!-- <input type="hidden" id="city2" name="destinationCity" />  -->
             <!-- <input type="hidden" id="cityLat" name="cityLat" />
             <input type="hidden" id="cityLng" name="cityLng" /> -->
