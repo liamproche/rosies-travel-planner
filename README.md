@@ -172,15 +172,13 @@ TO DO?
     #-Move dates out of User and into user show page
     #-Partials? (Nav)?
     #-Server deployment?
-    -Google docs map API
-    -Flight tracker API
-    -Google places API
+    #-Google map API
     -Meet to discuss and wireframe Front-end
+    -Google places API
     #-Nav changes from log-in/create account to actual nav?
     -Gray out calendar days that have passed
     -State/region field on trips?
     -Password security measures?
-d
   
     
 STRETCH GOALS

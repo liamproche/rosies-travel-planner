@@ -170,6 +170,7 @@ router.put('/:id', async (req, res) => {
                 //SAVE THE NEW USER IN THE DB
                 user.save();
             }
+            console.log('edited')
         }  
         //SEND THEM BACK TO THE SHOW PAGE (OR MY TRIPS PAGE???)
         res.redirect(`/trips/${req.params.id}`)

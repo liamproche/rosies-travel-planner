@@ -15,7 +15,7 @@
         <h2>The current destination Country is: <%=trip.destinationCountry%></h2>
         <form action="/trips/<%=trip._id%>?_method=PUT" method="POST">
             <label for="destinationCity">Destination:</label>
-            <input id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" /> 
+            <input id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" name="destinationCity"/> 
             <input type="submit">
         </form>
         <script src="" async defer></script>
