@@ -65,7 +65,6 @@ router.post('/new', async (req, res) => {
         //NOTE-NEEDS ELABORATION WHY DID VALIDATION FAIL, RETURN SPECIFIC MESSAGE TO USER REROUTE USER TO CREATE USER PAGE??
     }catch(err){
         console.log(err)
-        console.log('in the catch block')
         if(err.name === 'MongoServerError' && err.code === 11000) {
             res.send("<h1>That username already exists please try another</h1>\n<a href='/users/new'><button class='create-user-button'>Create a new user</button></a>")
         }
