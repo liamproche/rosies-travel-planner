@@ -9,7 +9,7 @@ MODELS
 
 #TRIP
     -Additional Content:
-    -resturants [or an API with local bars, must-gos, resturants]
+        -Activities?
 
 
 USER STORY
@@ -24,14 +24,14 @@ USER STORY
 
 ROUTES
 #TRIP INDEX PAGE [1/7]
-    - World map shows user destinations
+    -World map shows user destinations
 
 #TRIP SHOW FORM TO CREATE [2/7]
 
 #TRIP CREATE ROUTE(POST) [3/7]
  
 #TRIP SHOW PAGE [4/7]
-    -Lists price of current trip
+    -Lists price of current trip <-- Stretch goal
     -Possible addition of more information
 
 #TRIP SHOW FORM TO EDIT PAGE [5/7]
@@ -97,16 +97,14 @@ MVP CHECK
 
 KNOWN ISSUES
     #-Edit and delete does not update user trip array
+    -Does Departure City need to be on create user now?
     -Nav sometimes on user show page <--- Can't figure out where this happens
     -Nav shows link to page user is already on
-    -Message to users when creating fails validation?
-    -Messages to users if they pick a duplicate user name?
 
 
 TO DO?
     -Meet to discuss and wireframe Front-end
     -Google places API?
-    -State/region field on trips?
   
     
 STRETCH GOALS
@@ -128,8 +126,10 @@ FUNCTION NEEDS
 
 
 POSSIBLE THINGS TO ADD TO TRIP MODEL
+    -Activities
     -Restaurants they want to visit
     -Cultural events
+    -Historical sites
 
 
 ADDITIONAL STRETCH GOALS
@@ -142,7 +142,6 @@ ADDITIONAL STRETCH GOALS
 SOCIAL MEDIA INTEGRATION IDEAS (Stretch goal)
     -Index page world map with pins of various trending destinations
     -Users can checkout trips from other users and add trips that other users create
-
 
 
 NOTES
