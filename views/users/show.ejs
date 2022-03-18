@@ -1,9 +1,11 @@
 <html>
+    
     <head>
         <%-include ('../partials/head.ejs')%>
     </head>
     <body>
-        <h1>This is the user show page</h1>
+        <br><br>
+        <h3>This is the user show page</h3>
         <nav>
             <%-include ('../partials/nav.ejs')%>
         </nav>
@@ -21,12 +23,11 @@
             <ul class="trips">
                 <%user.trips.forEach((trip)=>{%>
                         <!-- LISTS USERS TRIPS BY CITY ONLY HREF TIED TO TRIP SHOW ROUTE -->
-                    <li><a href="/trips/<%=trip._id%>"><%=trip.destinationCity%></a></li>
+                    <li><a href="/trips/<%=trip._id%>"><%=trip.tripName%></a></li>
                     <%})%>
             </ul>
         <%}%>
         <!-- BELOW NEEDS TO LINK TO SHOW FORM TO CREATE TRIP PAGE -->
         <a href="/trips/new/<%=user._id%>"><button class="create-trip-button">Create a Trip!</button></a> 
-        <script src="" async defer></script>
     </body>
 </html>

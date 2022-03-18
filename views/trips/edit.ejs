@@ -11,12 +11,23 @@
             <%-include ('../partials/nav.ejs')%>
         </nav>
         <h1>This is the form to edit a trip</h1>
-        <h2>The current destination city is: <%=trip.destinationCity%></h2>
-        <h2>The current destination Country is: <%=trip.destinationCountry%></h2>
+        <h2>Location: <%=trip.destinationCity%></h2>
         <form action="/trips/<%=trip._id%>?_method=PUT" method="POST">
+            <label for="tripName">Name of this trip: </label>
+            <input type="text" name="tripName" placeholder="<%=trip.tripName%>">
             <label for="destinationCity">Destination:</label>
-            <input id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" name="destinationCity"/> 
+            <input id="searchTextField" type="text" size="50" placeholder="<%=trip.destinationCity%>" autocomplete="on" runat="server" name="destinationCity"/> 
             <input type="submit">
+        </form>
+        <h4>Activities:</h4>
+        <ul>
+            <%for(let i = 0; i < trip.activities.length; i++){%>
+                <li><%=trip.activities[i]%></li>
+            <%}%>
+        </ul>
+
+        <form action="/trips/<%=trip._id%>/deleteActivity?_method=PUT" method="POST">
+            <button class="delete-activity-button" type="submit">Delete Latest Activity</button>
         </form>
         <script src="" async defer></script>
     </body>

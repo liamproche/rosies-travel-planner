@@ -135,8 +135,10 @@ router.get('/:id', async (req, res) => {
     try{
         //QUERIES DB TO FIND SPECIFIC USER BY ID
         const user = await User.findById(req.params.id)
+        const userId = user._id
         res.render("users/show.ejs", {
             user: user,
+            userId: userId
         })
         //DB FUCK-UPS
     }catch(err){

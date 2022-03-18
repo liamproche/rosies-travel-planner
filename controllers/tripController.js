@@ -1,7 +1,6 @@
 const User = require('../models/user')
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
 const Trip = require('../models/trip');
 
 
@@ -161,7 +160,7 @@ router.get('/:id/edit', async (req, res) => {
     try{
         const trip = await Trip.findById(req.params.id)
         res.render('../views/trips/edit.ejs', {
-            trip: trip
+           trip: trip,
         })
     }catch(err){
         console.log(err)

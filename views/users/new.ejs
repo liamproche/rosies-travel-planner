@@ -4,15 +4,15 @@
         <%-include ('../partials/head.ejs')%>
     </head>
     <body>
-        <h1>This is the form to create a new user</h1>
+        <h1>Create an Account</h1>
             <form action="/users/new" method="POST">
                 <label for="username">Username:</label>
-                <input type="text" name="username" required>
+                <input type="text" name="username" placeholder="required"required>
                 <label for="name">Name:</label>
                 <input type="text" name="name">
                 <label for="password">Password:</label>
                 <!-- NOTE-NEED A REAL FIX FOR PASSWORD MIN VALIDATION -->
-                <input type="password" pattern=".{8,12}" required title="Password must be 8-12 characters" name="password" required> 
+                <input type="password" pattern=".{8,12}" required title="Password must be 8-12 characters" name="password" placeholder="required" required> 
                 <label for="departureCity">Departure City:</label>
                 <input type="text" name="departureCity">
                 <!-- NOTE CHECK ON DIFFERENT BROWSERS -->

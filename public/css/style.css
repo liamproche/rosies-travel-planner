@@ -1,40 +1,39 @@
-/* BEGIN TEXT */
+/* BEGIN TEXT
 *{
-    font-family: sans-serif
+  font-family: sans-serif
 }
 
 
 /* END TEXT */
-
-
-
-
-
 /* FOR LAYOUT PURPOSES */
 /* *{
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 } */
-body{
-    border: 2px solid blue
+/* body{
+  border: 2px solid blue
 }
 div{
-    border: 2px solid green;
+  border: 2px solid green;
 }
 main{
-    border: 2px solid red;
-}
+  border: 2px solid red;
+} */
 /* END FOR LAYOUT PURPOSES */
-
-
-/* BEGIN SIDE NAV */
-.nav{
-    list-style-type: none;
-
+video {
+  object-fit: fill;
 }
-/* END SIDE NAV */
 
-#map{
-    height: 50vh;
+html,
+    body,
+    header,
+    .carousel {
+      height: 100%;
+    }
 
-}
+    @media (min-width: 800px) and (max-width: 850px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #1C2331!important;
+            }
+        }
+.carousel,.carousel .carousel-inner,.carousel .carousel-inner .active,.carousel .carousel-inner .carousel-item,.view,body,html{height:100%}.navbar{background-color:rgba(0,0,0,.2)}.page-footer,.top-nav-collapse{background-color:#1C2331}@media only screen and (max-width:768px){.navbar{background-color:#1C2331}}

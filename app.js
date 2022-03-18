@@ -11,8 +11,12 @@ const store = new MongoDBStore({
     uri: process.env.MONGO_URI,
     collection: 'userSessions'
 });
+
+
+//CONTROLLER IMPORTS
 const userController = require('./controllers/userController');
 const tripController = require('./controllers/tripController');
+const activityController = require('./controllers/activityController');
 const port = process.env.PORT || 3000
 
 
@@ -31,8 +35,8 @@ app.use(session({
 
 
 //REF STATIC FILES
-app.use(express.static('public'));
-
+app.use(express.static( "public"))
+;
 
 
 //SENDS SESSION INFO TO TEMPLATES
@@ -57,6 +61,8 @@ app.use(methodOverride('_method'))
 //USER CONTROLLER
 app.use('/users', userController)
 app.use('/trips', tripController)
+app.use('/trips', activityController)
+
 
 
 
@@ -65,6 +71,13 @@ app.get('/e', (req, res)=>{
     res.redirect('/users/logout')
 })
 
+
+//routes to bootstrap css files
+// app.get("/",function(req,res){
+//     res.sendFile(path + "index.html");
+//   });
+  
+//   app.use("/",app);
 
 //POINTS USER TO HOME PAGE
 app.get('/', (req, res)=>{

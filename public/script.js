@@ -1,9 +1,8 @@
-async function findRestaurants(){
-    try{
-        const restaurants = await fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+miami&key=${process.env.GOOGLE_API_KEY}`)
-        return restaurants
-    }catch(err){
-        console.log(err)
-    }
-}
-console.log(findRestaurants())
+
+import { Toast } from 'bootstrap.esm.min.js'
+import * as mdb from 'mdb-ui-kit'; // lib
+import { Input } from 'mdb-ui-kit'; // module
+
+Array.from(document.querySelectorAll('.toast'))
+  .forEach(toastNode => new Toast(toastNode))
+new WOW().init();
