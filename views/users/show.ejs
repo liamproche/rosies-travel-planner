@@ -1,15 +1,16 @@
+
 <html>
     <head>
         <%-include ('../partials/head.ejs')%>
     </head>
     <body>
-        <h1>This is the user show page</h1>
         <nav>
             <%-include ('../partials/nav.ejs')%>
         </nav>
+        <h1 class="">Start Planning for the trip of a lifetime!</h1>
         <!-- DISPLAYS MESSAGE IF NO TRIPS -->
         <%if(user.trips.length === 0){%>
-            <h2>There are no trips yet</h2>
+            <h4>There are no trips yet</h4>
         <!-- FUNCTION TO ADD TRIPS TO PAGE FOR SPECIFIC USER -->
         <%}else{%>
             <h2>Hello, <%=user.name%>.</h2>
@@ -27,6 +28,8 @@
         <%}%>
         <!-- BELOW NEEDS TO LINK TO SHOW FORM TO CREATE TRIP PAGE -->
         <a href="/trips/new/<%=user._id%>"><button class="create-trip-button">Create a Trip!</button></a> 
+
+    </div>
         <script src="" async defer></script>
     </body>
 </html>

@@ -43,6 +43,7 @@ async function findTrendingTrips(){
 }
 
 
+
 // ROUTES
 // TRIP INDEX PAGE [1/7]
 //     -World map showing user destinations

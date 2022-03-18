@@ -31,8 +31,6 @@ ROUTES
 #TRIP CREATE ROUTE(POST) [3/7]
  
 #TRIP SHOW PAGE [4/7]
-    -Lists price of current trip <-- Stretch goal
-    -Possible addition of more information
 
 #TRIP SHOW FORM TO EDIT PAGE [5/7]
 
@@ -47,7 +45,6 @@ ROUTES
 #USER CREATE ROUTE(POST) [3/7]
 
 #USER SHOW PAGE [4/7]
-    -Lists prices of all trips from user <--Stretch goal
 
 #USER SHOW FORM TO EDIT PAGE [5/7]
 
@@ -58,12 +55,10 @@ ROUTES
 EJS TEMPLATES
     USERS
         #CREATE USER FORM
-            -Field to confirm password?
         
         #LOGIN-FORM
 
         #EDIT FORM
-            -Field to confirm password change?
     
     
     TRIPS
@@ -90,13 +85,12 @@ MVP CHECK
     #-A User model with functioning registration, log-in and log-out abilities
     #-Your non-user model is connected to the user that created it
     #-A git repository not inside the class repo
-    -At least 1 GitHub commit & push per day
+    #-At least 1 GitHub commit & push per day
     #-Be deployed online and accessible to the public via Heroku
-    -A README.md file with a link to your hosted app, explanations of the technologies used, the approach was taken, unsolved problems, user stories, and notes to yourself so you can come back to your project later in the course and be able to pick up your train of thought, etc
+    #-A README.md file with a link to your hosted app, explanations of the technologies used, the approach was taken, unsolved problems, user stories, and notes to yourself so you can come back to your project later in the course and be able to pick up your train of thought, etc
 
 
 KNOWN ISSUES
-    #-Edit and delete does not update user trip array
     -Does Departure City need to be on create user now?
     -Nav sometimes on user show page <--- Can't figure out where this happens
     -Nav shows link to page user is already on
