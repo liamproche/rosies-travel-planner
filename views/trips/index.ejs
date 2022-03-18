@@ -2,46 +2,219 @@
 <html>
     <head>
         <%-include ('../partials/head.ejs')%>
+        <link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.css"
+  rel="stylesheet"
+/>
     </head>
     <body>
         <nav>
             <%-include ('../partials/nav.ejs')%>
         </nav>
-        <h1>Trips created by users</h1>
-        <%if(trips.length === 0){%>
-            <h2>There are no trips in the database!</h2>
-        <%}else{%>
-            <h2>Trending Trips</h2>
-            <ul class="trending-trips">
-                <%trendingTrips.forEach((trip)=>{%>
-                    <li><a href="/trips/<%=trip._id%>"><%=trip.destinationCity%>, <%=trip.destinationCountry%></a></li>
-                <%})%>
-            </ul>
-            <h2>All Trips</h2>
-            <ul class="trips">
-            <%trips.forEach((trip)=>{%>
-                    <li><a href="/trips/<%=trip._id%>"><%=trip.destinationCity%>, <%=trip.destinationCountry%></a></li>
-            <%})%>
-        </ul>
-        <div id="map">
-        </div>
-        <%}%>
-        <script>
-            async function initMap() {
-                const myLatLng = { lat: -25.363, lng: 131.044 };
-                const map = await new google.maps.Map(document.getElementById("map"), {
-                        zoom: 1,
-                        center: myLatLng,
-                    });
-            
-                    new google.maps.Marker({
-                        position: myLatLng,
-                                    map,
-                        title: "Hello World!",
-                    });
-                    }
-            initMap();
-        </script>
+
+      <!--------------------------------------------------------------------------------->  
+         <!-- Responsive navbar-->
+         
+        <!-- Page Content-->
+            <div class="container px-4 px-lg-5">
+            <!-- Heading Row-->
+            <div class="row gx-4 gx-lg-5 align-items-center my-5">
+                <div class="col-lg-7">
+         <!--------------------Carousel------------------>
+            <!-- Carousel wrapper -->
+<div
+id="carouselVideoExample"
+class="carousel slide carousel-fade"
+data-mdb-ride="carousel"
+>
+<!-- Indicators -->
+<div class="carousel-indicators">
+  <button
+    type="button"
+    data-mdb-target="#carouselVideoExample"
+    data-mdb-slide-to="0"
+    class="active"
+    aria-current="true"
+    aria-label="Slide 1"
+  ></button>
+  <button
+    type="button"
+    data-mdb-target="#carouselVideoExample"
+    data-mdb-slide-to="1"
+    aria-label="Slide 2"
+  ></button>
+  <button
+    type="button"
+    data-mdb-target="#carouselVideoExample"
+    data-mdb-slide-to="2"
+    aria-label="Slide 3"
+  ></button>
+</div>
+
+<!-- Inner -->
+<div class="carousel-inner">
+  <!-- Single item -->
+  <div class="carousel-item active">
+    <video class="img-fluid" autoplay loop muted>
+      <source src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4" type="video/mp4" />
+    </video>
+    <div class="carousel-caption d-none d-md-block">
+      <h5>Plan Your Trip today </h5>
+      <p>
+        Getaway your way.
+      </p>
+    </div>
+  </div>
+
+  <!-- Single item -->
+  <div class="carousel-item">
+    <video class="img-fluid" autoplay loop muted>
+      <source src="https://mdbcdn.b-cdn.net/img/video/forest.mp4" type="video/mp4" />
+    </video>
+    <div class="carousel-caption d-none d-md-block">
+      <h5>Get Inspired</h5>
+      <p>
+        Look at trips that other users have created
+      </p>
+    </div>
+  </div>
+
+  <!-- Single item -->
+  <div class="carousel-item">
+    <video class="img-fluid" autoplay loop muted>
+      <source
+        src="https://mdbcdn.b-cdn.net/img/video/Agua-natural.mp4"
+        type="video/mp4"
+      />
+    </video>
+    <div class="carousel-caption d-none d-md-block">
+      <h5>Go Exploring</h5>
+      <p>
+        Explore activities available at your destination
+      </p>
+    </div>
+  </div>
+</div>
+<!-- Inner -->
+
+<!-- Controls -->
+<button
+  class="carousel-control-prev"
+  type="button"
+  data-mdb-target="#carouselVideoExample"
+  data-mdb-slide="prev"
+>
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Previous</span>
+</button>
+<button
+  class="carousel-control-next"
+  type="button"
+  data-mdb-target="#carouselVideoExample"
+  data-mdb-slide="next"
+>
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Next</span>
+</button>
+</div>
+<!-- Carousel wrapper -->
+
+         <!---------------------------------------------->
+
+                 
+                </div>
+                <div class="col-lg-5">
+                    <h1 class="font-weight-light">Start Planning for the trip of a lifetime!</h1>
+                    <p>Create an account to begin planning your trips! Check out the top trending destinations and see trips others have created.</p>
+                    <a class="btn btn-primary" href="/users">Start planning</a>
+                </div>
+            </div>
+            <!-- Call to Action-->
+            <div class="card text-white bg-secondary my-5 py-4 text-center" id="actionbar" >
+                <div class="card-body" ><p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p></div>
+            </div>
+            <!-------------Map------------------>
+              <div class="col-lg-7" id="map"  ></div>
+              <!------------------------------------>   
+            <!-- Content Row-->
+            <h2 class="card-title">Trending Trips</h2>
+            <%if(trendingTrips.length < 3){%>
+                <h2>There are no trips in the database!</h2>
+                <%}else{%>
+                    <!-- card 1 -->
+                    <div class="row gx-4 gx-lg-5">
+                        <div class="col-md-4 mb-5">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <p><%=trendingTrips[0].destinationCity%></p>
+                                    <img src="https://i.imgur.com/tuguLfN.jpg" alt="exploring-img" class="trending-image">
+                                </div>
+                                <div class="card-footer"><a class="btn btn-primary btn-sm" href="/trips/<%=trendingTrips[0]._id%>">Start Exploring</a></div>
+                            </div>
+                        </div>
+                        <!-- card 2 -->
+                        <div class="col-md-4 mb-5">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <p><%=trendingTrips[1].destinationCity%></p>
+                                    <img src="https://i.imgur.com/IuRPvRk.jpg" alt="exploring-img" class="trending-image">
+
+                                </div>
+                                <div class="card-footer"><a class="btn btn-primary btn-sm" href="/trips/<%=trendingTrips[1]._id%>">Start Exploring</a></div>
+                            </div>
+                        </div>
+                        <!-- card 3 -->
+                        <div class="col-md-4 mb-5">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <p><%=trendingTrips[2].destinationCity%></p>
+                                    <img src="https://i.imgur.com/Fg21CZp.jpg" alt="exploring-img" class="trending-image">
+                                </div>
+                                <div class="card-footer"><a class="btn btn-primary btn-sm" href="/trips/<%=trendingTrips[2]._id%>">Start Exploring</a></div>
+                            </div>
+                        </div>
+                <!-- END OF card 3 -->
+                <%}%>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Front-End Template Courtisy of Bootstrap</p></div>
+        </footer>
+
+
+      <!--------------------------------------------------------------------------------->
+      
+
+      
+      <script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.js"
+></script>
+      <script>
+          async function initMap() {
+              const myLatLng = { lat: -25.363, lng: 131.044 };
+              const map = await new google.maps.Map(document.getElementById("map"), {
+                      zoom: 1,
+                      center: myLatLng,
+                  });
+          
+                  new google.maps.Marker({
+                      position: myLatLng,
+                                  map,
+                      title: "Hello World!",
+                  });
+                  }
+          initMap();
+      </script> 
 
     <!--  <iframe
     //     width="600"

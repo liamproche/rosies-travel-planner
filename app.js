@@ -15,7 +15,6 @@ const userController = require('./controllers/userController');
 const tripController = require('./controllers/tripController');
 const port = process.env.PORT || 3000
 
-
 //MUST BE PLACED BEFORE USER CONTROLLER
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
