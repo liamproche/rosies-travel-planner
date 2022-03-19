@@ -136,7 +136,9 @@ data-mdb-ride="carousel"
                 <div class="col-lg-5">
                     <h1 class="font-weight-light">Start Planning for the trip of a lifetime!</h1>
                     <p>Create an account to begin planning your trips! Check out the top trending destinations and see trips others have created.</p>
-                    <a class="btn btn-primary" href="/users">Start planning</a>
+                    <%if(!isLoggedIn){%>
+                      <a class="btn btn-primary" href="/users">Start planning</a>
+                    <%}%>
                 </div>
             </div>
             <!-- Call to Action-->

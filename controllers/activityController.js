@@ -5,7 +5,8 @@ const Trip = require('../models/trip');
 const { findById } = require('../models/user');
 
 
-//ADD ACTIVITY ROUTE
+
+// ADD ACTIVITY ROUTE
 router.put('/:id/activity', async (req, res)=>{
      await Trip.findByIdAndUpdate(
            {_id: req.params.id},    
