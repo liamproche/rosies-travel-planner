@@ -1,209 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <%-include ('../partials/head.ejs')%>
+  <%-include ('../partials/head.ejs')%>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Grayscale - Start Bootstrap Theme</title>
+    <title>Trips Show Page</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
 </head>
+
 <body id="page-top">
-    <nav>
-        <%-include ('../partials/nav.ejs')%>
-    </nav>
-        <%if(tripOwner === currUser){%>
-            <form action="/trips/<%=trip._id%>/activity?_method=PUT" method="POST"> 
-                
-                <!------Test2-->
-<header class="bg-dark py-5">
-    <a class="btn btn-outline-light btn-lg px-4" href="/users/<%=tripOwnerId%>">Back</a>
-    <div class="container px-5">
-        <div class="row gx-5 justify-content-center">
+  <nav>
+    <%-include ('../partials/nav.ejs')%>
+  </nav>
+  <%if(tripOwner===currUser){%>
+    <form action="/trips/<%=trip._id%>/activity?_method=PUT" method="POST">
+
+      <!------Section 2-->
+      <section class = "bg-dark" id="mappy">
+      <header class="bg-dark py-5">
+        <a class="btn btn-outline-light btn-lg px-4" href="/users/<%=tripOwnerId%>">Back</a>
+        <div class="container px-5">
+          <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
-                <div class="text-center my-5">
-                    <h1 class="display-5 fw-bolder text-white mb-2" id="address">Location: <%=trip.destinationCity%></h1>
-                    <p class="lead text-white-50 mb-4" id="address"><%= trip.tripName%></p>
-                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                        <label for="add-activity">Add an activity:</label>
-                        <input  type="text" placeholder="Enter an activity" name="activity" minlength="5"></input>
-                        <input class="btn btn-outline-light btn-lg px-4" type="submit" id="activity-submit-button">Submit</input>
-                    </div>
+              <div class="text-center my-5">
+                <h1 class="display-5 fw-bolder text-white mb-2" id="address">
+                  <%=trip.destinationCity%>
+                </h1>
+                <p class="lead text-white-50 mb-4" id="address">
+                  <%= trip.tripName%>
+                </p>
+                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                  <label for="add-activity">Add an activity:</label>
+                  <input type="text" placeholder="Enter an activity" name="activity" minlength="5"></input>
+                  <input class="btn btn-outline-light btn-lg px-4" type="submit"
+                    id="activity-submit-button">Submit</input>
                 </div>
+              </div>
             </div>
-        </div>
+          </div>
     </form>
     <%}else{%>
-        <h6>Trip created by: <%=tripOwnerName%></h6>
-    <%}%>
-    <section class="trip-activities">
-            <%if(trip.activities.length <= 0){%>
-                <h4 class="lead text-white-50 mb-4">No activities have been planned for <%=trip.tripName%>.</h4>
+        <h1 class="display-5 fw-bolder id="address"><%=trip.tripName%></h1>
+        <h3>Location:<%=trip.destinationCity%></h3>
+        <h6 id="created-by">Trip created by: <%=tripOwnerName%></h6>
+      <%}%>
+        <section class="trip-activities">
+          <%if(trip.activities.length <=0){%>
+            <h4 class="lead text-white-50 mb-4">No activities have been planned for <%=trip.tripName%>.</h4>
             <%}else{%>
-                <h4 class="lead text-white-50 mb-4">Your plans for <%=trip.tripName%>:</h4>
-                <ul class="list-unstyled">
-            <%}%>
-            <%for(let i = 0; i < trip.activities.length; i++){%>
-                <%let activity = trip.activities[i]%>
-                            <li class="d-inline display-7 text-white-50 mb-4"><%=activity%></li>        
-            <%}%>
-        </ul>
-    </section>
-    <section class="edit-buttons">
-        <%if(tripOwner === currUser){%>
+              <h4 class="lead text-white-50 mb-4">Your plans for <%=trip.tripName%>:</h4>
+              <ul class="list-unstyled">
+                <%}%>
+                  <%for(let i=0; i < trip.activities.length; i++){%>
+                    <%let activity=trip.activities[i]%>
+                      <li class="display-7 text-white-50 mb-4">
+                        <%=activity%>
+                      </li>
+                      <%}%>
+              </ul>
+        </section>
+        <section class="edit-buttons">
+          <%if(tripOwner===currUser){%>
             <a class="btn btn-outline-light btn-lg px-4" href="/trips/<%=trip._id%>/edit">Edit</a>
-        <%}%>
-    </section>
-</div>
-</header>
-<!---Test2-------->
-          
-   
-</body>
-    <script>
-        //reads h1 which is destionationCity and saves address now just need fuction to run with clicking "pin" button
-        var geocoder = new google.maps.Geocoder();
-        var map;
-        async function initialize() {
-            var latlng = await new google.maps.LatLng(-34.397, 150.644);
-            var mapOptions = {
-                zoom: 8,
-                center: latlng
-            }
-        map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        }   
+            <%}%>
+        </section>
+        </div>
+        </header>
+        <!---Test2-------->
 
-        function codeAddress() {
-            var address = document.getElementById('address').innerText;
-            console.log(`addy: ${address}`)
-            geocoder.geocode( { 'address': address}, function(results, status) {
-            if (status == 'OK') {
-                console.log(`status is okay: ${address}`)
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
-                });
-            } else {
-                alert('Geocode was not successful for the following reason: ' + status);
-            }
-            });
-        }
-    </script>
-<body onload="drawMap()">
+
+</body>
 <script>
-    async function drawMap(){
-      try{  
+  //reads h1 which is destionationCity and saves address now just need fuction to run with clicking "pin" button
+  var geocoder = new google.maps.Geocoder();
+  var map;
+  async function initialize() {
+    var latlng = await new google.maps.LatLng(-34.397, 150.644);
+    var mapOptions = {
+      zoom: 8,
+      center: latlng
+    }
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  }
+
+  function codeAddress() {
+    var address = document.getElementById('address').innerText;
+    console.log(`addy: ${address}`)
+    geocoder.geocode({ 'address': address }, function (results, status) {
+      if (status == 'OK') {
+        console.log(`status is okay: ${address}`)
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+</script>
+
+  <div class=" bg-dark card h-100 text-lg-center align-items-center" id="show-page-map">
+<body onload="drawMap()">
+  <script>
+    async function drawMap() {
+      try {
         await initialize()
         codeAddress();
-      }catch{setTimeout(codeAddress, 50)}
+      } catch { setTimeout(codeAddress, 50) }
     }
-</script>
-    <div id="restuarants">
-    </div>
-    <div id="map" style="width: 320px; height: 480px;"></div>
-     <div>
-       <!-- <input type="button" value="Show on Map" onclick="codeAddress()"> -->
-     </div>
-<!---------------------------------------------------Test -------------------------->
-
-<!-- Contact section-->
-<!-- Carousel wrapper -->
-<div 
-id="carouselDarkVariant" 
-class="carousel slide carousel-fade carousel-dark" 
-data-mdb-ride="carousel"
->
+  </script>
+  <div id="restuarants">
+  </div>
+  <div id="map" style="width: 320px; height: 480px;"></div>
+  </div>
+  <div>
+    <!-- <input type="button" value="Show on Map" onclick="codeAddress()"> -->
+  </div>
+  <!-- end of map stuff -->
+  <!---------------------------------------------------Test -------------------------->
+</section>
+  <!-- Contact section-->
+  <!-- Carousel wrapper -->
+  <div id="carouselDarkVariant" class="carousel slide carousel-fade carousel-dark" data-mdb-ride="carousel">
     <!-- Indicators -->
     <div class="carousel-indicators">
-      <button
-        type="button"
-        data-mdb-target="#carouselDarkVariant"
-        data-mdb-slide-to="0"
-        class="active"
-        aria-current="true"
-        aria-label="Slide 1"
-      ></button>
-      <button
-        type="button"
-        data-mdb-target="#carouselDarkVariant"
-        data-mdb-slide-to="1"
-        aria-label="Slide 1"
-      ></button>
-      <button
-        type="button"
-        data-mdb-target="#carouselDarkVariant"
-        data-mdb-slide-to="2"
-        aria-label="Slide 1"
-      ></button>
+      <button type="button" data-mdb-target="#carouselDarkVariant" data-mdb-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-mdb-target="#carouselDarkVariant" data-mdb-slide-to="1" aria-label="Slide 1"></button>
+      <button type="button" data-mdb-target="#carouselDarkVariant" data-mdb-slide-to="2" aria-label="Slide 1"></button>
     </div>
-  
+
     <!-- Inner -->
     <div class="carousel-inner">
       <!-- Single item -->
       <div class="carousel-item active">
-        <img src="https://www.safestay.com/wp-content/uploads/2019/02/Screenshot-2019-02-28-at-16.03.png" class="d-block w-100" alt="restuarant"/>
+        <img src="https://www.safestay.com/wp-content/uploads/2019/02/Screenshot-2019-02-28-at-16.03.png"
+          class="d-block w-100" alt="restuarant" />
         <div class="carousel-caption d-none d-md-block">
         </div>
       </div>
-  
+
       <!-- Single item -->
       <div class="carousel-item">
-        <img src="https://museumrituals.files.wordpress.com/2021/04/5xpxy3luyja2xkfzj5pxumdpci.jpg" class="d-block w-100" alt="museum"/>
+        <img src="https://museumrituals.files.wordpress.com/2021/04/5xpxy3luyja2xkfzj5pxumdpci.jpg"
+          class="d-block w-100" alt="museum" />
         <div class="carousel-caption d-none d-md-block">
         </div>
       </div>
-  
+
       <!-- Single item -->
       <div class="carousel-item">
-        <img src="https://static01.nyt.com/images/2019/11/03/travel/00footsteps-olmsted1/merlin_161566521_4d72ba34-770d-4835-9095-710c24a11877-superJumbo.jpg?quality=75&auto=webp" class="d-block w-100" alt="park"/>
+        <img
+          src="https://static01.nyt.com/images/2019/11/03/travel/00footsteps-olmsted1/merlin_161566521_4d72ba34-770d-4835-9095-710c24a11877-superJumbo.jpg?quality=75&auto=webp"
+          class="d-block w-100" alt="park" />
         <div class="carousel-caption d-none d-md-block">
         </div>
       </div>
     </div>
     <!-- Inner -->
-  
+
     <!-- Controls -->
-    <button 
-        class="carousel-control-prev" 
-        type="button" 
-        data-mdb-target="#carouselDarkVariant" 
-        data-mdb-slide="prev"
-    >
+    <button class="carousel-control-prev" type="button" data-mdb-target="#carouselDarkVariant" data-mdb-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button 
-        class="carousel-control-next" 
-        type="button" 
-        data-mdb-target="#carouselDarkVariant" 
-        data-mdb-slide="next">
+    <button class="carousel-control-next" type="button" data-mdb-target="#carouselDarkVariant" data-mdb-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-  
-<!-- Footer-->
-<footer class="py-5 bg-dark">
-    <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
-</footer>
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.js"
-></script> 
-   </body>
+
+  <!-- Footer-->
+  <footer class="py-5 bg-dark">
+    <div class="container px-5">
+      <p class="m-0 text-center text-white">Template courtest of Boostrap@5</p>
+    </div>
+  </footer>
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Core theme JS-->
+  <script src="js/scripts.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.js"></script>
+</body>
