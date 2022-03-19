@@ -43,7 +43,6 @@ async function findTrendingTrips(){
 }
 
 
-
 // ROUTES
 // TRIP INDEX PAGE [1/7]
 //     -World map showing user destinations
@@ -94,6 +93,7 @@ router.get('/new/:userID', async (req, res) => {
     }
 })
 
+
 // TRIP SHOW FORM TO EDIT PAGE [5/7]
 //     -Show form to edit trip
 router.get('/:id/edit', async (req, res) => {
@@ -107,7 +107,6 @@ router.get('/:id/edit', async (req, res) => {
         res.sendStatus(500)
     }
 })
-
 
 
 // TRIP CREATE ROUTE(POST) [3/7]
@@ -136,12 +135,7 @@ router.post('/:id/:UserID', async (req, res) => {
 })
 
 
-
-
-
 // TRIP SHOW PAGE [4/7]
-//     -Lists price of current trip
-//     -Possible addition of more information
 router.get('/:id', async (req, res) => {
     try{
         const trip = await Trip.findById(req.params.id).populate('user') // now you can well actually you would still have the user id without .populate but you didn't have it before because you weren't adding it when you posted a trip
@@ -149,22 +143,25 @@ router.get('/:id', async (req, res) => {
         trip.hitcount++
         trip.save()
         console.log(trip.hitcount)
-        if (req.session.isLoggedIn) {
+        if(req.session.isLoggedIn) {
             console.log("logged in")
             let tripOwner = trip.user._id + ""
             let currUser = req.session.userId + ""
-            let tripOwnerName = trip.user.username
-            // console.log(`key :${user.keys}`)
+            let tripOwnerName = trip.user.name
+            let tripOwnerId = trip.user._id
             // if (res.locals.userId == trip.user ) --> not sure if user would just give you the id, that's something you would want to console log so you can see that actual obj in your terminal and if it doesn't if you the id then you could use .populate
             res.render("../views/trips/show.ejs", {
                 trip: trip,
                 tripOwner: tripOwner,
                 currUser :currUser,
-                tripOwnerName :tripOwnerName
+                currUserId: String(req.session.userId),
+                tripOwnerName :tripOwnerName,
+                tripOwnerId : tripOwnerId
             })
         }    
         else{
-            res.redirect('/users')
+            //PATCHED TO RETURN TO HOME SCREEN
+            res.redirect('/')
             console.log("not logged in")
         }
     }catch(err){
@@ -218,9 +215,7 @@ router.delete('/:id', async (req, res) => {
         //QUERIES THE DB TO FIND THE TRIP
         const trip = await Trip.findById(req.params.id)
         //QUERIES THE DB TO FIND THE USER
-        const user = await User.findById(trip.user)
-        
-        
+        const user = await User.findById(trip.user)        
         //LOOPS THROUGH ARRAY OF TRIPS STORED IN USER MODEL
         for (let i = 0; i < user.trips.length; i++){
             //STRING CONVERSION TO MATCH IDs
@@ -242,21 +237,15 @@ router.delete('/:id', async (req, res) => {
 })
 
 
-
-
-
 //DELETE ACTIVITY ROUTE
 router.put('/:id/deleteActivity', async(req, res)=>{
     const trip = await Trip.findById(req.params.id)
     const tripActivities = trip.activities
     tripActivities.splice(-1)
     trip.save()
-    
-    
+
     res.redirect(`/trips/${req.params.id}`)
 })
-
-
 
 
 module.exports = router

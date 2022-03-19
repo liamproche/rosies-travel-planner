@@ -2,40 +2,71 @@
 <html lang="en">
 <head>
     <%-include ('../partials/head.ejs')%>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Grayscale - Start Bootstrap Theme</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
 </head>
-<body>
+<body id="page-top">
     <nav>
         <%-include ('../partials/nav.ejs')%>
     </nav>
-    <h1 id="address"><%= trip.tripName%></h1>
-    <h2 id="address">Location: <%=trip.destinationCity%></h2>
         <%if(tripOwner === currUser){%>
             <form action="/trips/<%=trip._id%>/activity?_method=PUT" method="POST"> 
-                <label for="add-activity">Add an activity:</label>
-                <input type="text" placeholder="Enter an activity" name="activity" minlength="5" required>
-                <input type="submit" id="activity-submit-button">
-            </form>  
+                
+                <!------Test2-->
+<header class="bg-dark py-5">
+    <a class="btn btn-outline-light btn-lg px-4" href="/users/<%=tripOwnerId%>">Back</a>
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="text-center my-5">
+                    <h1 class="display-5 fw-bolder text-white mb-2" id="address">Location: <%=trip.destinationCity%></h1>
+                    <p class="lead text-white-50 mb-4" id="address"><%= trip.tripName%></p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                        <label for="add-activity">Add an activity:</label>
+                        <input  type="text" placeholder="Enter an activity" name="activity" minlength="5"></input>
+                        <input class="btn btn-outline-light btn-lg px-4" type="submit" id="activity-submit-button">Submit</input>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
     <%}else{%>
         <h6>Trip created by: <%=tripOwnerName%></h6>
     <%}%>
     <section class="trip-activities">
             <%if(trip.activities.length <= 0){%>
-                <h4>No activities have been planned for <%=trip.tripName%>.</h4>
+                <h4 class="lead text-white-50 mb-4">No activities have been planned for <%=trip.tripName%>.</h4>
             <%}else{%>
-                <h4>Your plans for <%=trip.tripName%>:</h4>
-                <ul class="activities">
+                <h4 class="lead text-white-50 mb-4">Your plans for <%=trip.tripName%>:</h4>
+                <ul class="list-unstyled">
             <%}%>
             <%for(let i = 0; i < trip.activities.length; i++){%>
                 <%let activity = trip.activities[i]%>
-                    <li><%=activity%></li>
+                            <li class="d-inline display-7 text-white-50 mb-4"><%=activity%></li>        
             <%}%>
         </ul>
     </section>
     <section class="edit-buttons">
         <%if(tripOwner === currUser){%>
-            <a href="/trips/<%=trip._id%>/edit"><button class="edit-trip-button">Edit</button></a>
+            <a class="btn btn-outline-light btn-lg px-4" href="/trips/<%=trip._id%>/edit">Edit</a>
         <%}%>
     </section>
+</div>
+</header>
+<!---Test2-------->
+          
+   
 </body>
     <script>
         //reads h1 which is destionationCity and saves address now just need fuction to run with clicking "pin" button
@@ -82,4 +113,97 @@
      <div>
        <!-- <input type="button" value="Show on Map" onclick="codeAddress()"> -->
      </div>
+<!---------------------------------------------------Test -------------------------->
+
+<!-- Contact section-->
+<!-- Carousel wrapper -->
+<div 
+id="carouselDarkVariant" 
+class="carousel slide carousel-fade carousel-dark" 
+data-mdb-ride="carousel"
+>
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-mdb-target="#carouselDarkVariant"
+        data-mdb-slide-to="0"
+        class="active"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-mdb-target="#carouselDarkVariant"
+        data-mdb-slide-to="1"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-mdb-target="#carouselDarkVariant"
+        data-mdb-slide-to="2"
+        aria-label="Slide 1"
+      ></button>
+    </div>
+  
+    <!-- Inner -->
+    <div class="carousel-inner">
+      <!-- Single item -->
+      <div class="carousel-item active">
+        <img src="https://www.safestay.com/wp-content/uploads/2019/02/Screenshot-2019-02-28-at-16.03.png" class="d-block w-100" alt="restuarant"/>
+        <div class="carousel-caption d-none d-md-block">
+        </div>
+      </div>
+  
+      <!-- Single item -->
+      <div class="carousel-item">
+        <img src="https://museumrituals.files.wordpress.com/2021/04/5xpxy3luyja2xkfzj5pxumdpci.jpg" class="d-block w-100" alt="museum"/>
+        <div class="carousel-caption d-none d-md-block">
+        </div>
+      </div>
+  
+      <!-- Single item -->
+      <div class="carousel-item">
+        <img src="https://static01.nyt.com/images/2019/11/03/travel/00footsteps-olmsted1/merlin_161566521_4d72ba34-770d-4835-9095-710c24a11877-superJumbo.jpg?quality=75&auto=webp" class="d-block w-100" alt="park"/>
+        <div class="carousel-caption d-none d-md-block">
+        </div>
+      </div>
+    </div>
+    <!-- Inner -->
+  
+    <!-- Controls -->
+    <button 
+        class="carousel-control-prev" 
+        type="button" 
+        data-mdb-target="#carouselDarkVariant" 
+        data-mdb-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button 
+        class="carousel-control-next" 
+        type="button" 
+        data-mdb-target="#carouselDarkVariant" 
+        data-mdb-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+    <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.js"
+></script> 
    </body>

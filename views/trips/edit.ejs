@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <%-include ('../partials/head.ejs')%>
+
+<head>
+    <%-include ('../partials/head.ejs')%>
         <script>
             google.maps.event.addDomListener(window, 'load', initialize);
         </script>
-    </head>
-    <body>
-        <nav>
-            <%-include ('../partials/nav.ejs')%>
-        </nav>
-        <h1>This is the form to edit a trip</h1>
-        <h2>Location: <%=trip.destinationCity%></h2>
-        <form action="/trips/<%=trip._id%>?_method=PUT" method="POST">
-            <label for="tripName">Name of this trip: </label>
-            <input type="text" name="tripName" placeholder="<%=trip.tripName%>">
-            <label for="destinationCity">Destination:</label>
-            <input id="searchTextField" type="text" size="50" placeholder="<%=trip.destinationCity%>" autocomplete="on" runat="server" name="destinationCity"/> 
-            <input type="submit">
-        </form>
-        <%if(trip.activities.length > 0){%>
-            <h4>Activities:</h4>
-            <ul>
-                <%for(let i = 0; i < trip.activities.length; i++){%>
-                    <li><%=trip.activities[i]%></li>
+</head>
+
+<body>
+    <nav>
+        <%-include ('../partials/nav.ejs')%>
+    </nav>
+    <a class="btn bg-dark btn-outline-light btn-lg px-4" href="/trips/<%=trip._id%>">Back</a>
+    <h1 class="lead text-white-50 lg-4">This is the form to edit a trip</h1>
+    <h2 class="lead text-white-50 lg-4">Location: <%=trip.destinationCity%>
+    </h2>
+    <form action="/trips/<%=trip._id%>?_method=PUT" method="POST">
+        <label for="tripName">Name of this trip: </label>
+        <input class="lead text-white-50 lg-4" type="text" name="tripName" placeholder="<%=trip.tripName%>">
+        <label for="destinationCity">Destination:</label>
+        <input id="searchTextField" type="text" size="50" placeholder="<%=trip.destinationCity%>" autocomplete="on"
+            runat="server" name="destinationCity" />
+        <input type="submit">
+    </form>
+    <%if(trip.activities.length> 0){%>
+        <h4>Activities:</h4>
+        <ul>
+            <%for(let i=0; i < trip.activities.length; i++){%>
+                <li>
+                    <%=trip.activities[i]%>
+                </li>
                 <%}%>
-            </ul>
-            <form action="/trips/<%=trip._id%>/deleteActivity?_method=PUT" method="POST">
-                <button class="delete-activity-button" type="submit">Delete Latest Activity</button>
-            </form>
+        </ul>
+        <form action="/trips/<%=trip._id%>/deleteActivity?_method=PUT" method="POST">
+            <button class="delete-activity-button" type="submit">Delete Latest Activity</button>
+        </form>
         <%}else{%>
             <h4>There are no planned activities for this trip</h4>
             <%}%>
-        <form action="/trips/<%= trip._id%>?_method=DELETE" method="POST">
-            <button type="submit">Delete <%=trip.tripName%>?</button>
-        </form>
-    </body>
+                <form action="/trips/<%= trip._id%>?_method=DELETE" method="POST">
+                    <button class="btn bg-dark btn-outline-light btn-lg px-4" type="submit">Delete <%=trip.tripName%>?</button>
+                </form>
+</body>
+
 </html>

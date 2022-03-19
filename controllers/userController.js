@@ -12,6 +12,8 @@ router.get('/', async (req, res) => {
     })
 })
 
+
+
 //LOG USER IN ROUTE(POST)
 router.post("/login", async (req, res) => {
     try{
@@ -27,17 +29,17 @@ router.post("/login", async (req, res) => {
                 //SETS THE USER ID FOR THE SESSION
                 req.session.userId = possibleUser._id;
                 //REDIRECTS LOGGED-IN USER TO USER SHOW PAGE
-                res.redirect(`/users/${possibleUser._id}`)
+                res.redirect(`/trips`)
                 console.log("user is logged in")
             }
             else{
                 //IF PASSWORDS DONT MATCH REDERICT TO LOG-IN PAGE
-                res.redirect("/users")
+                res.redirect(`/trips`)//Changed from /users
             }
         } 
         else{
             //IF USERNAME DOESNT EXIST IN DB REDIRECT TO LOGIN PAGE
-            res.redirect("/users")
+            res.redirect("/trips")//Changed from /users
             //not working
         }
         //DB FUCK-UPS
@@ -59,12 +61,12 @@ router.post('/new', async (req, res) => {
     try{
         const newUser = await User.create(req.body);
         //SENDS USER TO USER SHOW PAGE
-        res.redirect(`/users`)
+        res.redirect(`/trips`)
         //NOTE-NEEDS ELABORATION WHY DID VALIDATION FAIL, RETURN SPECIFIC MESSAGE TO USER REROUTE USER TO CREATE USER PAGE??
     }catch(err){
         console.log(err)
         if(err.name === 'MongoServerError' && err.code === 11000) {
-            res.send("<h1>That username already exists please try another</h1>\n<a href='/users/new'><button class='create-user-button'>Create a new user</button></a>")
+            res.redirect("/")
         }
     }
 })
@@ -150,9 +152,11 @@ router.delete('/:id', async (req, res) => {
     try{
         //QUERIES DB TO FIND SPECIFIC USER AND DELETES THEM
         await User.findByIdAndDelete(req.params.id)
-        //SENDS USER TO LOGIN PAGE?
-        res.redirect('/users')
-        //DB FUCK-UPS
+        //KILLS THE SESSION
+        req.session.destroy(() => {
+            //REDIRECTS TO LOGIN PAGE
+            res.redirect("/")
+        })
     }catch(err){
         console.log(err)
         res.sendStatus(500)
