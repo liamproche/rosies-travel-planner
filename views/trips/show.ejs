@@ -7,16 +7,26 @@
     <nav>
         <%-include ('../partials/nav.ejs')%>
     </nav>
-    <h1 id="address"><%= trip.destinationCity %></h1>
-    <h1><%= trip.destinationCountry %></h1>
-    <%if(tripOwner === currUser){%>
-        <a href="/trips/<%=trip._id%>/edit"><button class="edit-trip-button">Edit</button></a>
-        <form action="/trips/<%= trip._id %>?_method=DELETE" method="post">
-            <button type="submit">Delete <%= trip.destinationCity%>?</button>
-        </form>
+    <h1 id="address"><%= trip.tripName%></h1>
+    <h2 id="address">Location: <%=trip.destinationCity%></h2>
+        <%if(tripOwner === currUser){%>
+            <form action="/trips/<%=trip._id%>/activity?_method=PUT" method="POST"> 
+                <label for="add-activity">Add an activity:</label>
+                <input type="text" placeholder="activity" name="activity">
+                <input type="submit" id="activity-submit-button">
+            </form>  
     <%}else{%>
         <h6>Trip created by: <%=tripOwnerName%></h6>
     <%}%>
+    <section class="trip-activities">
+        <h4>Planned Activities:</h4>
+        <ul class="activities">
+            <%for(let i = 0; i < trip.activities.length; i++){%>
+                <%let activity = trip.activities[i]%>
+                    <li><%=activity%></li>
+            <%}%>
+        </ul>
+    </section>
 </body>
     <script>
         //reads h1 which is destionationCity and saves address now just need fuction to run with clicking "pin" button
@@ -56,13 +66,6 @@
         codeAddress();
       }catch{setTimeout(codeAddress, 50)}
     }
-</script>
-<script>
-    async function findRestaurants(){
-       let restaurants = await fetch('https://jsonplaceholder.typicode.com/users')
-        console.log(restaurants)
-    }
-findRestaurants();
 </script>
     <div id="restuarants">
     </div>
