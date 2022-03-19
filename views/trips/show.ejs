@@ -27,6 +27,14 @@
             <%}%>
         </ul>
     </section>
+    <section class="edit-buttons">
+        <%if(tripOwner === currUser){%>
+            <a href="/trips/<%=trip._id%>/edit"><button class="edit-trip-button">Edit</button></a>
+            <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
+                <button type="submit">Delete <%=trip.tripName%>?</button>
+            </form>
+        <%}%>
+    </section>
 </body>
     <script>
         //reads h1 which is destionationCity and saves address now just need fuction to run with clicking "pin" button

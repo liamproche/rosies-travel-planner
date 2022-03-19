@@ -38,7 +38,9 @@
             <input id="searchTextField" type="text" size="50" placeholder="<%=trip.destinationCity%>" autocomplete="on" runat="server" name="destinationCity"/> 
             <input type="submit">
         </form>
-        
+        <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
+            <button type="submit">Delete <%=trip.tripName%>?</button>
+        </form>
         <div class="container">
             <div class="row">
                 <div class="col-sm-4"></div>
