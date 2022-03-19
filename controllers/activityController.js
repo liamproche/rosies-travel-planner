@@ -19,9 +19,7 @@ router.put('/:id/deleteActivity', async(req, res)=>{
     const trip = await Trip.findById(req.params.id)
     const tripActivities = trip.activities
     tripActivities.splice(-1)
-    trip.save()
-    
-    
+    trip.save()  
     res.redirect(`/trips/${req.params.id}`)
 })
 

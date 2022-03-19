@@ -94,14 +94,20 @@ router.get('/new/:userID', async (req, res) => {
     }
 })
 
+// TRIP SHOW FORM TO EDIT PAGE [5/7]
+//     -Show form to edit trip
+router.get('/:id/edit', async (req, res) => {
+    try{
+        const trip = await Trip.findById(req.params.id)
+        res.render('../views/trips/edit.ejs', {
+            trip: trip
+        })
+    }catch(err){
+        console.log(err)
+        res.sendStatus(500)
+    }
+})
 
-//ADD ACTIVITY ROUTE
-router.put('/:id/activity', async (req, res)=>{
-    await Trip.findByIdAndUpdate(
-          {_id: req.params.id},    
-          {$push:{activities:req.body.activity}})
-          res.redirect(`/trips/${req.params.id}`)
-  })
 
 
 // TRIP CREATE ROUTE(POST) [3/7]
@@ -128,6 +134,9 @@ router.post('/:id/:UserID', async (req, res) => {
         res.send("this is it")
     }
 })
+
+
+
 
 
 // TRIP SHOW PAGE [4/7]
@@ -164,20 +173,6 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-
-// TRIP SHOW FORM TO EDIT PAGE [5/7]
-//     -Show form to edit trip
-router.get('/:id/edit', async (req, res) => {
-    try{
-        const trip = await Trip.findById(req.params.id)
-        res.render('../views/trips/edit.ejs', {
-            trip: trip
-        })
-    }catch(err){
-        console.log(err)
-        res.sendStatus(500)
-    }
-})
 
 //ADD ACTIVITY ROUTE
 router.post('/trip/:id/activity', async (req, res)=>{

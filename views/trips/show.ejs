@@ -12,7 +12,7 @@
         <%if(tripOwner === currUser){%>
             <form action="/trips/<%=trip._id%>/activity?_method=PUT" method="POST"> 
                 <label for="add-activity">Add an activity:</label>
-                <input type="text" placeholder="activity" name="activity">
+                <input type="text" placeholder="Enter an activity" name="activity" minlength="5" required>
                 <input type="submit" id="activity-submit-button">
             </form>  
     <%}else{%>
@@ -30,9 +30,6 @@
     <section class="edit-buttons">
         <%if(tripOwner === currUser){%>
             <a href="/trips/<%=trip._id%>/edit"><button class="edit-trip-button">Edit</button></a>
-            <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
-                <button type="submit">Delete <%=trip.tripName%>?</button>
-            </form>
         <%}%>
     </section>
 </body>
