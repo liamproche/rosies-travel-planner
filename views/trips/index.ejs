@@ -16,6 +16,10 @@
 <!-- END LOGIN MODAL -->
 </head>
     <body>
+        <%if(trips.length === 0){%>
+        <h1>There are no trips</h1>
+          <a href="users/new">Create an Account</a>
+        <%}else{%>
         <nav>
             <%-include ('../partials/nav.ejs')%>
         </nav>
@@ -217,7 +221,6 @@ data-mdb-ride="carousel"
     <head>
 
     </head>
-    
 
     <!--BEGIN LOGIN MODAL-->
     <div id="myModal" class="modal fade">
@@ -248,6 +251,7 @@ data-mdb-ride="carousel"
         </div>
       </div>
       <!-- END LOGIN MODAL   -->
+    <%}%>
     </html>
 </html>
 </html>
