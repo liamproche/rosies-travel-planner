@@ -44,9 +44,11 @@
                 <li><%=trip.activities[i]%></li>
             <%}%>
         </ul>
-        <form action="/trips/<%=trip._id%>/deleteActivity?_method=PUT" method="POST">
-            <button class="delete-activity-button" type="submit">Delete Latest Activity</button>
-        </form>
+        <%if(trip.activities > 0){%>
+            <form action="/trips/<%=trip._id%>/deleteActivity?_method=PUT" method="POST">
+                <button class="delete-activity-button" type="submit">Delete Latest Activity</button>
+            </form>
+        <%}%>
         <form action="/trips/<%= trip._id%>?_method=DELETE" method="POST">
             <button type="submit">Delete <%=trip.tripName%>?</button>
         </form>
