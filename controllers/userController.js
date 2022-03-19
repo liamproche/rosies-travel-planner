@@ -6,13 +6,11 @@ const Trip = require('../models/trip');
 const isLoggedIn = ('../middleware/isLoggedIn')
 
 
-//SHOW USER LOGIN FORM ROUTE(GET)
+// SHOW USER LOGIN FORM ROUTE(GET)
 router.get('/', async (req, res) => {
-    // NOTE- COMMENT IN BELOW TO RENDER LOGIN FORM
     res.render('users/login.ejs', {
     })
 })
-
 
 //LOG USER IN ROUTE(POST)
 router.post("/login", async (req, res) => {

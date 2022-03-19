@@ -13,6 +13,7 @@ const store = new MongoDBStore({
 });
 const userController = require('./controllers/userController');
 const tripController = require('./controllers/tripController');
+const activityController = require('./controllers/activityController');
 const port = process.env.PORT || 3000
 
 //MUST BE PLACED BEFORE USER CONTROLLER
@@ -56,7 +57,7 @@ app.use(methodOverride('_method'))
 //USER CONTROLLER
 app.use('/users', userController)
 app.use('/trips', tripController)
-
+app.use('/trips', activityController)
 
 
 //FOR EMERGENCY LOGOUTS DURING BUILD PHASE REMOVE FOR PRODUCTION

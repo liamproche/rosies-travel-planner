@@ -94,6 +94,21 @@ router.get('/new/:userID', async (req, res) => {
     }
 })
 
+// TRIP SHOW FORM TO EDIT PAGE [5/7]
+//     -Show form to edit trip
+router.get('/:id/edit', async (req, res) => {
+    try{
+        const trip = await Trip.findById(req.params.id)
+        res.render('../views/trips/edit.ejs', {
+            trip: trip
+        })
+    }catch(err){
+        console.log(err)
+        res.sendStatus(500)
+    }
+})
+
+
 
 // TRIP CREATE ROUTE(POST) [3/7]
 //     -Create the actual trip  
@@ -116,9 +131,12 @@ router.post('/:id/:UserID', async (req, res) => {
         //DB OOPSIES
     }catch (err) {
         console.log(err)
-        res.send("something with router . post")
+        res.send("this is it")
     }
 })
+
+
+
 
 
 // TRIP SHOW PAGE [4/7]
@@ -156,19 +174,10 @@ router.get('/:id', async (req, res) => {
 })
 
 
-// TRIP SHOW FORM TO EDIT PAGE [5/7]
-//     -Show form to edit trip
-router.get('/:id/edit', async (req, res) => {
-    try{
-        const trip = await Trip.findById(req.params.id)
-        res.render('../views/trips/edit.ejs', {
-            trip: trip
-        })
-    }catch(err){
-        console.log(err)
-        res.sendStatus(500)
-    }
-})
+//ADD ACTIVITY ROUTE
+router.post('/trip/:id/activity', async (req, res)=>{
+    res.send('posted')    
+ })
 
 
 // TRIP EDIT ROUTE [6/7]
@@ -231,6 +240,23 @@ router.delete('/:id', async (req, res) => {
         res.sendStatus(500)
     }
 })
+
+
+
+
+
+//DELETE ACTIVITY ROUTE
+router.put('/:id/deleteActivity', async(req, res)=>{
+    const trip = await Trip.findById(req.params.id)
+    const tripActivities = trip.activities
+    tripActivities.splice(-1)
+    trip.save()
+    
+    
+    res.redirect(`/trips/${req.params.id}`)
+})
+
+
 
 
 module.exports = router
