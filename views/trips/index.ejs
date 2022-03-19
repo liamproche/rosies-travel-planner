@@ -16,20 +16,20 @@
 <!-- END LOGIN MODAL -->
 </head>
     <body>
-        <%if(trips.length === 0){%>
-        <h1>There are no trips</h1>
-          <a href="users/new">Create an Account</a>
-        <%}else{%>
         <nav>
             <%-include ('../partials/nav.ejs')%>
         </nav>
-
+        <%if(trips.length === 0){%>
+        <h1>There are no trips</h1>
+        
+        
+        <%}else{%>
       <!--------------------------------------------------------------------------------->  
          <!-- Responsive navbar-->
          
         <!-- Page Content-->
             <div class="container px-4 px-lg-5">
-            <!-- Heading Row-->
+            
             <div class="row gx-4 gx-lg-5 align-items-center my-5">
                 <div class="col-lg-7">
          <!--------------------Carousel------------------>
@@ -130,21 +130,19 @@ data-mdb-ride="carousel"
 </button>
 </div>
 <!-- Carousel wrapper -->
-
-         <!---------------------------------------------->
-
-                 
+      
                 </div>
                 <div class="col-lg-5">
                     <h1 class="font-weight-light">Start Planning for the trip of a lifetime!</h1>
                     <p>Create an account to begin planning your trips! Check out the top trending destinations and see trips others have created.</p>
+                    
                     <%if(!isLoggedIn){%>
                       <a class="btn btn-primary" href="#myModal" class="trigger-btn" data-toggle="modal">Start planning</a>
                     <%}%>
                 </div>
             <!-- Call to Action-->
-            <div class="card text-white bg-secondary my-5 py-4 text-center" id="actionbar" >
-                <div class="card-body" ><p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p></div>
+            <div class="card text-white bg-dark my-5 py-4 text-center" id="actionbar" >
+                <div class="card-body bg-dark" ><p class="text-white m-0">Rosie's Travel App &#x2122;  is a Member Company of Rosie's Riveters International </p></div>
             </div>
             <!-------------Map------------------>
               <div class="col-lg-7" id="map"  ></div>
@@ -188,16 +186,6 @@ data-mdb-ride="carousel"
                         </div>
                 <!-- END OF card 3 -->
                 <%}%>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Front-End Template Courtisy of Bootstrap</p></div>
-        </footer>
-
-
-      <!--------------------------------------------------------------------------------->
-      
-
-      
       <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.js"
@@ -246,12 +234,64 @@ data-mdb-ride="carousel"
             </form>				 
           </div>
           <div class="modal-footer">
-            <a href="users/new">Create an Account</a>
           </div>
         </div>
       </div>
+    </div>
       <!-- END LOGIN MODAL   -->
-    <%}%>
+    
+    <!-- I THINK THIS GUY'S A STRAY -->
+    <!-- <%}%> -->
+
+<!-- BEGIN CREATE USER MODAL -->
+  <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/users/new" method="POST">
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="orangeForm-name" class="form-control validate" placeholder="Must be unique" name="username">
+          <label data-error="wrong" data-success="right" for="orangeForm-name">Your username</label>
+        </div>
+        <div class="md-form mb-5">
+          <input type="text" id="orangeForm-email" class="form-control validate" name="name">
+          <label data-error="wrong" data-success="right" for="orangeForm-email">Your name</label>
+        </div>
+        <div class="md-form mb-4">
+          <input type="password" id="orangeForm-pass" class="form-control validate" placeholder="8-12 characters" name="password" pattern=".{8,12}" required title="Password must be 8-12 characters" required>
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="submit" class="btn btn-deep-orange">Sign up</button>
+        </div>
+      </form >
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- END CREATE USER MODAL -->
+
+
+
+
+
+
+
+
+
+
     </html>
+     <!-- Footer-->
+     <footer class="py-5 bg-dark">
+      <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+  </footer>
 </html>
 </html>

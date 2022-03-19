@@ -7,25 +7,137 @@
         <nav>
             <%-include ('../partials/nav.ejs')%>
         </nav>
+        <h2>Hello, <%=user.name%>.</h2>
         <h1 class="">Start Planning for the trip of a lifetime!</h1>
-        <!-- DISPLAYS MESSAGE IF NO TRIPS -->
-        <%if(user.trips.length === 0){%>
-            <h4>There are no trips yet</h4>
-        <!-- FUNCTION TO ADD TRIPS TO PAGE FOR SPECIFIC USER -->
-        <%}else{%>
-            <h2>Hello, <%=user.name%>.</h2>
-            <h2>Here are your trips:</h2>
-            <ul class="trips">
-                <%user.trips.forEach((trip)=>{%>
-                    <!-- LISTS USERS TRIPS BY CITY ONLY HREF TIED TO TRIP SHOW ROUTE -->
-                    <li><a href="/trips/<%=trip._id%>"><%=trip.tripName%></a></li>
-                    <%})%>
-            </ul>
-        <%}%>
-        <!-- BELOW NEEDS TO LINK TO SHOW FORM TO CREATE TRIP PAGE -->
-        <a href="/trips/new/<%=user._id%>"><button class="create-trip-button">Create a Trip!</button></a> 
 
+        <header class="bg-dark py-5">
+        
+            <div class="container px-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="text-center my-5">
+                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+
+<!-- DISPLAYS MESSAGE IF NO TRIPS -->
+<%if(user.trips.length === 0){%>
+    <h4 class="display-5 fw-bolder text-white mb-2" >There are no trips yet</h4>
+<!-- FUNCTION TO ADD TRIPS TO PAGE FOR SPECIFIC USER -->
+<%}else{%>
+    <h2 class="display-6 font-weight-light text-white mb-3">Here are your trips:</h2>
+    <ul class="trips">
+        <%user.trips.forEach((trip)=>{%>
+            <!-- LISTS USERS TRIPS BY CITY ONLY HREF TIED TO TRIP SHOW ROUTE -->
+            <li><a href="/trips/<%=trip._id%>" class="font-weight-light text-white sm-9"><%=trip.tripName%></a></li>
+            <%})%>
+    </ul>
+<%}%>
+<!-- BELOW NEEDS TO LINK TO SHOW FORM TO CREATE TRIP PAGE -->
+<a href="/trips/new/<%=user._id%>"><button class="btn bg-opacity-75 bg-secondary btn-outline-light btn-lg px-4">Create a Trip!</button></a> 
+<!-- display-7 font-weight-light text-black md-8   -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </header>
+        
+<!-- ---------------------Carousel--------------- -->
     </div>
-        <script src="" async defer></script>
+    <div 
+    id="carouselDarkVariant" 
+    class="carousel slide carousel-fade carousel-dark" 
+    data-mdb-ride="carousel"
+    >
+<!-- Indicators -->
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-mdb-target="#carouselDarkVariant"
+            data-mdb-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-mdb-target="#carouselDarkVariant"
+            data-mdb-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-mdb-target="#carouselDarkVariant"
+            data-mdb-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+      
+        <!-- Inner -->
+        <div class="carousel-inner">
+          <!-- Single item -->
+          <div class="carousel-item active">
+            <img src="https://maiden-voyage-travel.com/wp-content/uploads/2017/07/fc87fee1fb262de65cb8a7b5e586a1b0.jpg" class="d-block w-100" alt="Beach"/>
+            <div class="carousel-caption d-none d-md-block">
+              <!-- <h5>First slide label</h5>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> -->
+            </div>
+          </div>
+      
+          <!-- Single item -->
+          <div class="carousel-item">
+            <img src="https://imagesvc.meredithcorp.io/v3/jumpstartpure/image?url=https://cf-images.us-east-1.prod.boltdns.net/v1/static/3281700261001/963479d3-f483-48ff-b8f9-4cfa55fb2b58/28d3d6c8-bcba-45c5-97b5-8d9555af1ac7/1280x720/match/image.jpg&w=1280&h=720&q=90&c=cc" class="d-block w-100" alt="Mountaintop"/>
+            <div class="carousel-caption d-none d-md-block">
+              <!-- <h5>Second slide label</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
+            </div>
+          </div>
+      
+          <!-- Single item -->
+          <div class="carousel-item">
+            <img src="https://iso.500px.com/wp-content/uploads/2014/07/hong-kong-cityscape1.jpg" class="d-block w-100" alt="City"/>
+            <div class="carousel-caption d-none d-md-block">
+              <!-- <h5>Third slide label</h5>
+              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p> -->
+            </div>
+          </div>
+        </div>
+        <!-- Inner -->
+      
+        <!-- Controls -->
+        <button 
+          class="carousel-control-prev" 
+          type="button" 
+          data-mdb-target="#carouselDarkVariant" 
+          data-mdb-slide="prev"
+          >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button 
+        class="carousel-control-next" 
+        type="button" 
+        data-mdb-target="#carouselDarkVariant" 
+        data-mdb-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.js"
+    ></script>
     </body>
 </html>

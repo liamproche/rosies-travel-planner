@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const tripSchema = new Schema({
-    tripName: {type:String,},
+    tripName: {type:String},
     destinationCity: {type:String, required: true},
     activities: Array,
     destinationCountry: {type:String},

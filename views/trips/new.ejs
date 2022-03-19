@@ -11,15 +11,31 @@
         <script>
             google.maps.event.addDomListener(window, 'load', initialize);
         </script>
-        <form action="/trips/new/<%=user._id%>" method="POST">
-            <label for="tripName">Trip name:</label>
-            <input type="text" name="tripName" placeholder="Name this trip..." required="true">
-            <label for="destinationCity">Location: </label>
-            <input id="searchTextField" type="text" size="50" placeholder="Where you going?" autocomplete="on" runat="server" name="destinationCity"/>  
-            <!-- <input type="hidden" id="city2" name="destinationCity" />  -->
-            <!-- <input type="hidden" id="cityLat" name="cityLat" />
-            <input type="hidden" id="cityLng" name="cityLng" /> -->
-            <button type="submit">Create Trip</button> 
-        </form>
+
+         <div class="row gx-4 gx-lg-5 justify-content-between">
+         <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <div class="card-body">
+                    <form action="/trips/new/<%=user._id%>" method="POST" action="/submit-form">
+                        <div class="text-lg-center">
+                            <label for="tripName">Trip name:</label>
+                            <input type="text" name="tripName" placeholder="Name this trip..." required="true"> 
+                        </div>
+                        <!-- PASSWORD UPDATING NEEDS WORK -->
+                        <!-- <label for="password">Password:</label> -->
+                        <!-- NOTE-NEED A REAL FIX FOR PASSWORD MIN VALIDATION -->
+                        <!-- <input type="password" name="password" minlegnth=8 required>  -->
+                        <div class="text-lg-center">
+                            <label for="destinationCity">Location: </label>
+                            <input id="searchTextField" type="text" size="50" placeholder="Where you going?" autocomplete="on" runat="server" name="destinationCity" placeholder="required"required/> 
+                            <button type="submit">Create Trip</button>  
+                        </div>
+                    </form>         
+                    </div>            
+                </div>
+            </div>
+        </div>
+    </div>
+
     </body>
 </html>
