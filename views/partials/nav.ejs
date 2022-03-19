@@ -1,5 +1,4 @@
 
-<!--END NAVIGATION-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container px-5">
             <a class="navbar-brand" href="/">Rosie's Travel App</a>
@@ -12,7 +11,7 @@
                         <li class="nav-item"><a class="nav-link" href="/users/<%=userId%>/edit">Account</a></li>
                         <li class="nav-item"><a class="nav-link" href="/users/logout">Logout</a></li>
                         <%}else{%>
-                            <li class="nav-item"><a class="nav-link" href="/users">Login</a>
+                            <li class="nav-item"><a class="nav-link" href="#myModal" class="trigger-btn" data-toggle="modal">Login</a>
                             <li class="nav-item"><a class="nav-link" href="/users/new">Create a new user</a>
                         <%}%>
                 </ul>
